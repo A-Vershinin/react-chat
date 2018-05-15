@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": [
+    "react-app"
+  ],
+  "env": {
+    "browser": true,
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "max-len": [2, 120]
+  }
+}

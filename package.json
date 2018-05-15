@@ -1,0 +1,46 @@
+{
+  "name": "react-chat",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Anatoliy Vershinin",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint 'src/**/*.js'",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier-eslint --write '**/*.{js,jsx,json}'",
+    "editorconfig": "editorconfig-cli",
+    "editorconfigfix": "editorconfig-tools fix src"
+  },
+  "dependencies": {
+    "@htmlacademy/editorconfig-cli": "^1.0.0",
+    "editorconfig-tools": "^0.1.1",
+    "material-ui": "^1.0.0-beta.47",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4",
+    "typeface-roboto": "0.0.54"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "prettier-eslint-cli": "^4.7.1"
+  },
+  "editorconfig-cli": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.json",
+    "src/**/*.{sass,scss}"
+  ],
+  "browserslist": [
+    "last 2 versions",
+    "IE 11",
+    "Firefox ESR"
+  ]
+}
