@@ -34,36 +34,34 @@ const styles = theme => ({
   },
 });
 
-class Sidebar extends Component {
-  render() {
-    const { classes, chats } = this.props;
-    return (
-      <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
-        <div className={classes.drawerHeader}>
-          <TextField fullWidth margin="normal" placeholder="Search chats..." />
-        </div>
-        <Divider />
-        <List className={classes.chatsList}>
-          {
-            chats.map((chat, index) => (
-              <ListItem key={index} button>
-                <Avatar>{titleInitials(chat.title)}</Avatar>
-                <ListItemText primary={chat.title}/>
-              </ListItem>
-            ))
-          }
-        </List>
-        <Button variant="fab" color="primary" className={classes.newChatButton}>
-          <AddIcon />
-        </Button>
-        <BottomNavigation showLabels>
-          <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
-        </BottomNavigation>
-      </Drawer>
-    );
-  }
+const Sidebar = props => {
+  const { classes, chats } = props;
 
+  return (
+    <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
+      <div className={classes.drawerHeader}>
+        <TextField fullWidth margin="normal" placeholder="Search chats..." />
+      </div>
+      <Divider />
+      <List className={classes.chatsList}>
+        {
+          chats.map((chat, index) => (
+            <ListItem key={index} button>
+              <Avatar>{titleInitials(chat.title)}</Avatar>
+              <ListItemText primary={chat.title}/>
+            </ListItem>
+          ))
+        }
+      </List>
+      <Button variant="fab" color="primary" className={classes.newChatButton}>
+        <AddIcon />
+      </Button>
+      <BottomNavigation showLabels>
+        <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+      </BottomNavigation>
+    </Drawer>
+  );
 }
 
 export default withStyles(styles)(Sidebar);

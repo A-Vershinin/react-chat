@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -17,26 +17,28 @@ const styles = theme => ({
   },
 });
 
-class ChatItem extends Component {
-  render() {
-    const { classes, message, isMessageFromMe, userAvatar } = this.props;
+const ChatItem = props => {
+  const {
+    classes,
+    message,
+    isMessageFromMe,
+    userAvatar
+  } = props;
 
-    return (
-      <Fragment>
-        {!isMessageFromMe && userAvatar}
-        <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
-          <Typography variant="caption">
-            {message.sender}
-          </Typography>
-          <Typography variant="body1">
-            {message.content}
-          </Typography>
-        </Paper>
-        {isMessageFromMe && userAvatar}
-      </Fragment>
-    );
-  }
-
+  return (
+    <Fragment>
+      {!isMessageFromMe && userAvatar}
+      <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
+        <Typography variant="caption">
+          {message.sender}
+        </Typography>
+        <Typography variant="body1">
+          {message.content}
+        </Typography>
+      </Paper>
+      {isMessageFromMe && userAvatar}
+    </Fragment>
+  )
 }
 
 export default withStyles(styles)(ChatItem);
