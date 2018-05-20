@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import Avatar from 'material-ui/Avatar';
 import Sidebar from './components/Sidebar.jsx';
+import ChatHeader from './components/ChatHeader.jsx';
 
 import { chats, messages } from './mock-data.json';
 import titleInitials from './utils/title-initials'
@@ -19,10 +18,6 @@ const styles = theme => ({
     width: '100%',
     height: '100%',
     backgroundColor: theme.palette.background.default,
-  },
-  appBar: {
-    position: 'fixed',
-    width: `calc(100% - 320px)`
   },
   chatLayout: {
     display: 'flex',
@@ -103,13 +98,7 @@ class Layout extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="absolute" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
-              DogeCodes React Chat
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <ChatHeader />
         <Sidebar chats={chats}/>
         <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
           <div className={classes.messagesWrapper}>
