@@ -5,11 +5,9 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Paper from '@material-ui/core/Paper';
-import Avatar from 'material-ui/Avatar';
 import Input from '@material-ui/core/Input';
-
-import SideBar from './components/Sidebar.jsx';
-
+import Avatar from 'material-ui/Avatar';
+import Sidebar from './components/Sidebar.jsx';
 
 import { chats, messages } from './mock-data.json';
 import titleInitials from './utils/title-initials'
@@ -22,12 +20,17 @@ const styles = theme => ({
     height: '100%',
     backgroundColor: theme.palette.background.default,
   },
-
   appBar: {
     position: 'fixed',
     width: `calc(100% - 320px)`
   },
-
+  chatLayout: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    overflow: 'hidden',
+  },
   messagesWrapper: {
     overflowX: 'scroll',
     height: '100%',
@@ -107,7 +110,7 @@ class Layout extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SideBar chats={chats}/>
+        <Sidebar chats={chats}/>
         <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
           <div className={classes.messagesWrapper}>
           {
