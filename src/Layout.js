@@ -17,27 +17,6 @@ const styles = theme => ({
 });
 
 class Layout extends Component {
-  constructor(props){
-    super(props);
-    this.refMessagesWrapper = React.createRef();
-  }
-
-  componentDidMount() {
-    this.scrollDownHistory();
-  }
-
-  componentDidUpdate() {
-    this.scrollDownHistory();
-  }
-
-  scrollDownHistory() {
-    const messagesWrapper = this.refMessagesWrapper.current;
-
-    if (messagesWrapper) {
-      messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
-    }
-  }
-
   render() {
     const { classes } = this.props;
 

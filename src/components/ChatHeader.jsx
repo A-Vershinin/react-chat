@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -14,7 +13,8 @@ const styles = theme => ({
 
 class ChatHeader extends Component {
   render() {
-        const { classes } = this.props;
+    const { classes } = this.props;
+
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import List from '@material-ui/core/List';
