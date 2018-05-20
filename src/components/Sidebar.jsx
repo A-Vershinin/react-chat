@@ -38,18 +38,9 @@ class Sidebar extends Component {
   render() {
     const { classes, chats } = this.props;
     return (
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
+      <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
         <div className={classes.drawerHeader}>
-          <TextField
-            fullWidth
-            margin="normal"
-            placeholder="Search chats..."
-          />
+          <TextField fullWidth margin="normal" placeholder="Search chats..." />
         </div>
         <Divider />
         <List className={classes.chatsList}>

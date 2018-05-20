@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Paper from '@material-ui/core/Paper';
 import Avatar from 'material-ui/Avatar';
+import ChatItem from './ChatItem.jsx';
 
 import InputMessage from './InputMessage.jsx';
 import titleInitials from '../utils/title-initials';
@@ -31,16 +32,6 @@ const styles = theme => ({
   },
   messageWrappperFromMe: {
     justifyContent: 'flex-end',
-  },
-  message: {
-    maxWidth: '70%',
-    minWidth: '10%',
-    padding: theme.spacing.unit,
-    marginLeft: theme.spacing.unit * 2,
-  },
-  messageFromMe: {
-    marginRight: theme.spacing.unit * 2,
-    backgroundColor: '#e6dcff'
   },
 });
 
@@ -81,17 +72,13 @@ class Chat extends Component {
 
             return (
              <div key={index}
-              className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
-              {!isMessageFromMe && userAvatar}
-              <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
-                <Typography variant="caption">
-                  {message.sender}
-                </Typography>
-                <Typography variant="body1">
-                  {message.content}
-                </Typography>
-              </Paper>
-              {isMessageFromMe && userAvatar}
+              className={classNames(classes.messageWrapper,
+              isMessageFromMe && classes.messageWrappperFromMe)}>
+                <ChatItem
+                  isMessageFromMe={isMessageFromMe}
+                  userAvatar={userAvatar}
+                   message={message}
+                />
             </div>
             );
           })}
