@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Paper from '@material-ui/core/Paper';
 import Avatar from 'material-ui/Avatar';
 
 import ChatItem from './ChatItem.jsx';
@@ -34,14 +32,18 @@ const styles = theme => ({
   },
 });
 
-class ChatList extends Component {
-  render() {
-    const { classes, messages } = this.props;
+const ChatList = props => {
 
-    return (
-      <div className={classes.messagesWrapper}>
-      {messages && messages.map((message, index) => {
-        const isMessageFromMe = message.sender === 'me';
+  const {
+    classes,
+    messages
+  } = props;
+
+  return (
+    <div className={classes.messagesWrapper}>
+    {
+      messages && messages.map((message, index) => {
+      const isMessageFromMe = message.sender === 'me';
 
         const userAvatar = (
           <Avatar> {titleInitials(message.sender[0])} </Avatar>
@@ -57,11 +59,10 @@ class ChatList extends Component {
             />
         </div>
         );
-      })}
-      </div>
-    );
-  }
-
+      })
+    }
+    </div>
+  );
 }
 
 export default withStyles(styles)(ChatList);
