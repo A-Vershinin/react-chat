@@ -20,7 +20,7 @@ import ExploreIcon from '@material-ui/icons/Explore';
 import RestoreIcon from '@material-ui/icons/Restore';
 
 import { chats, messages } from './mock-data.json';
-
+import titleInitials from './utils/title-initials'
 
 const styles = theme => ({
   root: {
@@ -141,7 +141,7 @@ class Layout extends React.Component {
             {
               chats.map((chat, index) => (
                 <ListItem key={index} button>
-                  <Avatar>{chat.title && chat.title[0]}</Avatar>
+                  <Avatar>{titleInitials(chat.title)}</Avatar>
                   <ListItemText primary={chat.title}/>
                 </ListItem>
               ))
@@ -162,7 +162,7 @@ class Layout extends React.Component {
               const isMessageFromMe = message.sender === 'me';
 
               const userAvatar = (
-                <Avatar> {message.sender[0]} </Avatar>
+                <Avatar> {titleInitials(message.sender[0])} </Avatar>
               );
 
               return (
