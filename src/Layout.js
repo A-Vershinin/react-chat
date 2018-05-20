@@ -71,6 +71,36 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 3,
     paddingBottom: '120px',
   },
+  messageInputWrapper: {
+    position: 'fixed',
+    left: 'auto',
+    right: 0,
+    bottom: 0,
+    width: `calc(100% - 320px)`,
+    padding: theme.spacing.unit * 3,
+  },
+  messageInput: {
+    padding: theme.spacing.unit * 2,
+  },
+  messageWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+  },
+  messageWrappperFromMe: {
+    justifyContent: 'flex-end',
+  },
+  message: {
+    maxWidth: '70%',
+    minWidth: '10%',
+    padding: theme.spacing.unit,
+    marginLeft: theme.spacing.unit * 2,
+  },
+  messageFromMe: {
+    marginRight: theme.spacing.unit * 2,
+    backgroundColor: '#e6dcff'
+  },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -128,15 +158,17 @@ class Layout extends React.Component {
           <div className={classes.messagesWrapper}>
           {
             messages && messages.map((message, index) => {
+              const isMessageFromMe = message.sender === 'me';
+
               const userAvatar = (
                 <Avatar> {message.sender[0]} </Avatar>
               );
 
               return (
               <div key={index}
-                className={[classes.messageWrapper, classes.messageWrappperFromMe].join(' ')}>
-                {userAvatar}
-                <Paper className={classes.message}>
+              className={[classes.messageWrapper, isMessageFromMe ? classes.messageWrappperFromMe : ''].join(' ')}>
+                {!isMessageFromMe && userAvatar}
+                <Paper className={[classes.message, isMessageFromMe ? classes.messageFromMe : ''].join(' ')}>
                   <Typography variant="caption">
                     {message.sender}
                   </Typography>
@@ -144,10 +176,11 @@ class Layout extends React.Component {
                     {message.content}
                   </Typography>
                 </Paper>
+                {isMessageFromMe && userAvatar}
               </div>
-            );
-          })
-        }
+              );
+            })
+          }
           </div>
         </main>
       </div>
