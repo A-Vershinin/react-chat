@@ -5,10 +5,23 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText'
+import Avatar from 'material-ui/Avatar';
+
+
+
+import { chats, messages } from './mock-data.json';
+
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
   },
   appFrame: {
     height: 430,
@@ -19,32 +32,28 @@ const styles = theme => ({
     width: '100%'
   },
   appBar: {
+    position: 'fixed',
     width: `calc(100% - 320px)`
-  },
-  'appBar-left': {
-    marginLeft: 320
-  },
-  'appBar-right': {
-    marginRight: 320
   },
   drawerPaper: {
     position: 'relative',
-    width: 320
+    height: '100%',
+    width: 320,
   },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
-  }
+  },
 });
 
-class PermanentDrawer extends React.Component {
+class Layout extends React.Component {
   render() {
     const { classes } = this.props;
 
     return (
-      <div className={classes.appFrame}>
+      <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography variant="title" color="inherit" noWrap>
@@ -60,6 +69,16 @@ class PermanentDrawer extends React.Component {
         >
           <div className={classes.toolbar} />
           <Divider />
+          <List className={classes.chatsList}>
+            {
+              chats.map((chat, index) => (
+                <ListItem key={index} button>
+                  <Avatar>{chat.title && chat.title[0]}</Avatar>
+                  <ListItemText primary={chat.title}/>
+                </ListItem>
+              ))
+            }
+          </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
@@ -70,4 +89,4 @@ class PermanentDrawer extends React.Component {
   }
 }
 
-export default withStyles(styles)(PermanentDrawer);
+export default withStyles(styles)(Layout);
