@@ -8,6 +8,7 @@ import Divider from 'material-ui/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText'
+import Paper from '@material-ui/core/Paper';
 import Avatar from 'material-ui/Avatar';
 import TextField from '@material-ui/core/TextField';
 
@@ -55,6 +56,20 @@ const styles = theme => ({
     left: 'auto',
     right: theme.spacing.unit * 3,
     bottom: theme.spacing.unit * 3 + 48,
+  },
+  chatLayout: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    overflow: 'hidden',
+  },
+  messagesWrapper: {
+    overflowX: 'scroll',
+    height: '100%',
+    width: '100%',
+    paddingTop: theme.spacing.unit * 3,
+    paddingBottom: '120px',
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -109,9 +124,31 @@ class Layout extends React.Component {
             <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
           </BottomNavigation>
         </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+        <main className={classes.chatLayout}>
+          <div className={classes.messagesWrapper}>
+          {
+            messages && messages.map((message, index) => {
+              const userAvatar = (
+                <Avatar> {message.sender[0]} </Avatar>
+              );
+
+              return (
+              <div key={index}
+                className={[classes.messageWrapper, classes.messageWrappperFromMe].join(' ')}>
+                {userAvatar}
+                <Paper className={classes.message}>
+                  <Typography variant="caption">
+                    {message.sender}
+                  </Typography>
+                  <Typography variant="body1">
+                    {message.content}
+                  </Typography>
+                </Paper>
+              </div>
+            );
+          })
+        }
+          </div>
         </main>
       </div>
     );
