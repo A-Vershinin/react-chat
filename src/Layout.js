@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from 'material-ui/Avatar';
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -46,6 +47,11 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
   },
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+  },
 });
 
 class Layout extends React.Component {
@@ -67,7 +73,13 @@ class Layout extends React.Component {
             paper: classes.drawerPaper
           }}
         >
-          <div className={classes.toolbar} />
+          <div className={classes.drawerHeader}>
+            <TextField
+              fullWidth
+              margin="normal"
+              placeholder="Search chats..."
+            />
+          </div>
           <Divider />
           <List className={classes.chatsList}>
             {
