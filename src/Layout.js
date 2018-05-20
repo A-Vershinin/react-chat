@@ -11,7 +11,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from 'material-ui/Avatar';
 import TextField from '@material-ui/core/TextField';
 
-
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+import ExploreIcon from '@material-ui/icons/Explore';
+import RestoreIcon from '@material-ui/icons/Restore';
 
 import { chats, messages } from './mock-data.json';
 
@@ -41,16 +45,22 @@ const styles = theme => ({
     height: '100%',
     width: 320,
   },
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+  },
+  newChatButton: {
+    position: 'absolute',
+    left: 'auto',
+    right: theme.spacing.unit * 3,
+    bottom: theme.spacing.unit * 3 + 48,
+  },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
-  },
-  drawerHeader: {
-    ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing.unit * 3,
-    paddingRight: theme.spacing.unit * 3,
   },
 });
 
@@ -91,6 +101,13 @@ class Layout extends React.Component {
               ))
             }
           </List>
+          <Button variant="fab" color="primary" className={classes.newChatButton}>
+            <AddIcon />
+          </Button>
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+            <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+          </BottomNavigation>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
