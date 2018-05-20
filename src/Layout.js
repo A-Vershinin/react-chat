@@ -111,9 +111,31 @@ const styles = theme => ({
 });
 
 class Layout extends React.Component {
+  constructor(props){
+    super(props);
+    this.refMessagesWrapper = React.createRef();
+  }
+
+  componentDidMount() {
+    this.scrollDownHistory();
+  }
+
+  componentDidUpdate() {
+    this.scrollDownHistory();
+  }
+
+  scrollDownHistory() {
+    const messagesWrapper = this.refMessagesWrapper.current;
+
+    if (messagesWrapper) {
+      messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
+    }
+  }
+
   render() {
     const { classes } = this.props;
 
+    // console.log(mesRefNode)
     return (
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
@@ -155,7 +177,7 @@ class Layout extends React.Component {
             <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
           </BottomNavigation>
         </Drawer>
-        <main className={classes.chatLayout}>
+        <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
           <div className={classes.messagesWrapper}>
           {
             messages && messages.map((message, index) => {
