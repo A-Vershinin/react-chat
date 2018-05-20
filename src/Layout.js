@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Paper from '@material-ui/core/Paper';
 import Avatar from 'material-ui/Avatar';
 import TextField from '@material-ui/core/TextField';
-
+import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
@@ -166,7 +166,7 @@ class Layout extends React.Component {
 
               return (
               <div key={index}
-              className={[classes.messageWrapper, isMessageFromMe ? classes.messageWrappperFromMe : ''].join(' ')}>
+                className={[classes.messageWrapper, isMessageFromMe ? classes.messageWrappperFromMe : ''].join(' ')}>
                 {!isMessageFromMe && userAvatar}
                 <Paper className={[classes.message, isMessageFromMe ? classes.messageFromMe : ''].join(' ')}>
                   <Typography variant="caption">
@@ -181,6 +181,11 @@ class Layout extends React.Component {
               );
             })
           }
+          </div>
+          <div className={classes.messageInputWrapper}>
+            <Paper className={classes.messageInput} elevation={6}>
+              <Input fullWidth placeholder="Type your message…"/>
+            </Paper>
           </div>
         </main>
       </div>
