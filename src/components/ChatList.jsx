@@ -1,67 +1,31 @@
-import React from 'react';
-import classNames from 'classnames';
+import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from 'material-ui/Avatar';
 
-import ChatItem from './ChatItem.jsx';
-import titleInitials from '../utils/title-initials';
+import titleInitials from '../utils/title-initials'
 
 const styles = theme => ({
-  chatLayout: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    overflow: 'hidden',
-  },
-  messagesWrapper: {
-    overflowX: 'scroll',
-    height: '100%',
-    width: '100%',
-    paddingTop: theme.spacing.unit * 3,
-    paddingBottom: '120px',
-  },
-  messageWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
-  },
-  messageWrappperFromMe: {
-    justifyContent: 'flex-end',
+  chatsList: {
+    height: 'calc(100% - 56px)',
+    overflowY: 'scroll',
   },
 });
 
-const ChatList = props => {
-
-  const {
-    classes,
-    messages
-  } = props;
-
+const ChatList = ({ classes, chats }) => {
   return (
-    <div className={classes.messagesWrapper}>
-    {
-      messages && messages.map((message, index) => {
-      const isMessageFromMe = message.sender === 'me';
-
-        const userAvatar = (
-          <Avatar> {titleInitials(message.sender[0])} </Avatar>
-        );
-
-        return (
-          <div key={index} className={classNames(classes.messageWrapper,
-            isMessageFromMe && classes.messageWrappperFromMe)}>
-            <ChatItem
-              isMessageFromMe={isMessageFromMe}
-              userAvatar={userAvatar}
-              message={message}
-            />
-        </div>
-        );
-      })
-    }
-    </div>
+      <List className={classes.chatsList}>
+        {
+          chats.map((chat, index) => (
+            <ListItem key={index} button>
+              <Avatar>{titleInitials(chat.title)}</Avatar>
+              <ListItemText primary={chat.title}/>
+            </ListItem>
+          ))
+        }
+      </List>
   );
 }
 

@@ -9,12 +9,12 @@ import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavi
 import ExploreIcon from '@material-ui/icons/Explore';
 import RestoreIcon from '@material-ui/icons/Restore';
 
-import SidebarChatList from './SidebarChatList.jsx';
+import ChatList from './ChatList.jsx';
 
 const styles = theme => ({
   drawerPaper: {
     position: 'relative',
-    height: '100%',
+    height: '100vh',
     width: 320,
   },
   drawerHeader: {
@@ -23,11 +23,15 @@ const styles = theme => ({
     paddingRight: theme.spacing.unit * 3,
   },
   newChatButton: {
-    position: 'absolute',
+    position: 'absolute!important',
     left: 'auto',
     right: theme.spacing.unit * 3,
     bottom: theme.spacing.unit * 3 + 48,
   },
+  chatsList: {
+   height: 'calc(100% - 56px)',
+   overflowY: 'scroll',
+ },
 });
 
 const Sidebar = props => {
@@ -39,8 +43,8 @@ const Sidebar = props => {
         <TextField fullWidth margin="normal" placeholder="Search chats..." />
       </div>
       <Divider />
-      <SidebarChatList chats={chats}/>
-      <Button variant="fab" color="primary" className={classes.newChatButton}>
+      <ChatList chats={chats}/>
+      <Button variant="fab"  color="primary" className={classes.newChatButton} >
         <AddIcon />
       </Button>
       <BottomNavigation showLabels>

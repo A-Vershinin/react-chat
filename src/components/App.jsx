@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from './components/Layout.jsx';
+import Layout from './Layout.jsx';
 
 class App extends Component {
   render() {

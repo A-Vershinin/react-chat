@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
-import Chat from './Chat.jsx';
+import ChatMessages from './ChatMessages.jsx';
 
 import { chats, messages } from '../mock-data.json';
 
@@ -24,7 +24,7 @@ class Layout extends Component {
       <div className={classes.root}>
         <ChatHeader />
         <Sidebar chats={chats}/>
-        <Chat messages={messages}/>
+        <ChatMessages messages={messages}/>
       </div>
     );
   }
