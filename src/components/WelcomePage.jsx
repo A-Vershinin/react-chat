@@ -53,8 +53,8 @@ class WelcomePage  extends Component {
              </Tabs>
             </AppBar>
             <div className={classes.tabContent}>
-              {activeTab === 0 && <LoginForm onSubmit={login} />}
-              {activeTab === 1 && <SignUpForm onSubmit={signup} />}
+              {activeTab === 0 && <LoginForm  />}
+              {activeTab === 1 && <SignUpForm  />}
             </div>
            </Paper>
           </Grid>
