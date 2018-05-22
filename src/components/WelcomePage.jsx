@@ -6,6 +6,7 @@ import Typography from 'material-ui/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
+import LoginForm from './LoginForm.jsx';
 
 const styles = theme => ({
   paper: {
@@ -28,7 +29,7 @@ class WelcomePage  extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, login } = this.props;
     const { activeTab } = this.state;
 
     return (
@@ -51,7 +52,7 @@ class WelcomePage  extends Component {
              </Tabs>
             </AppBar>
             <div className={classes.tabContent}>
-              {activeTab === 0 && <h1>Вкладка 1 </h1>}
+              {activeTab === 0 && <LoginForm onSubmit={login} />}
               {activeTab === 1 && <h1>Вкладка 2 </h1>}
             </div>
            </Paper>
