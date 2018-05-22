@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-class Layout extends Component {
+class ChatPage extends Component {
   render() {
     const { classes } = this.props;
 
@@ -30,4 +30,4 @@ class Layout extends Component {
   }
 }
 
-export default withStyles(styles)(Layout);
+export default withStyles(styles)(ChatPage);

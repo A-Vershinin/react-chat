@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Layout from './Layout.jsx';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ChatPage from './ChatPage.jsx';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Layout />
-      </div>
+      <Router>
+        <Route path='/chat' component={ChatPage} />
+      </Router>
     );
   }
 }
