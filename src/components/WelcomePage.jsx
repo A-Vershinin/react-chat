@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import LoginForm from './LoginForm.jsx';
+import SignUpForm from './SignUpForm.jsx';
 
 const styles = theme => ({
   paper: {
@@ -29,7 +30,7 @@ class WelcomePage  extends Component {
   };
 
   render() {
-    const { classes, login } = this.props;
+    const { classes, login, signup } = this.props;
     const { activeTab } = this.state;
 
     return (
@@ -53,7 +54,7 @@ class WelcomePage  extends Component {
             </AppBar>
             <div className={classes.tabContent}>
               {activeTab === 0 && <LoginForm onSubmit={login} />}
-              {activeTab === 1 && <h1>Вкладка 2 </h1>}
+              {activeTab === 1 && <SignUpForm onSubmit={signup} />}
             </div>
            </Paper>
           </Grid>
