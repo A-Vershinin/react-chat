@@ -4,7 +4,7 @@ import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE,
 } from '../constans/index';
 
-export function signUp(username, password) {
+export function signup(username, password) {
 	return (dispatch) => {
 		dispatch({
 			type: SIGNUP_REQUEST,
@@ -52,12 +52,12 @@ export function login(username, password) {
      })
      .then(response => response.json())
      .then(json => dispatch({
-				 type: SIGNUP_SUCCESS,
+				 type: LOGIN_SUCCESS,
 				 payload: json,
 			 })
 	 		)
      .catch(reason => dispatch({
-				 type: SIGNUP_FAILURE,
+				 type: LOGIN_FAILURE,
 				 payload: reason,
 			 })
 		 );

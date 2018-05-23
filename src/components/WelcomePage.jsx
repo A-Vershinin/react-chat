@@ -30,7 +30,7 @@ class WelcomePage  extends Component {
   };
 
   render() {
-    const { classes, login, signup } = this.props;
+    const { classes, login, signup, isAuthenticated } = this.props;
     const { activeTab } = this.state;
 
     return (
@@ -53,8 +53,8 @@ class WelcomePage  extends Component {
              </Tabs>
             </AppBar>
             <div className={classes.tabContent}>
-              {activeTab === 0 && <LoginForm  />}
-              {activeTab === 1 && <SignUpForm  />}
+              {activeTab === 0 && <LoginForm  onSubmit={login} />}
+              {activeTab === 1 && <SignUpForm  onSubmit={signup} />}
             </div>
            </Paper>
           </Grid>
