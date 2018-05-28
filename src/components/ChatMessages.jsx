@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import ChatMessageList from './ChatMessageList.jsx';
 
 import InputMessage from './InputMessage.jsx';
