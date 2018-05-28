@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from 'material-ui';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -32,6 +33,10 @@ class WelcomePage  extends Component {
   render() {
     const { classes, login, signup, isAuthenticated } = this.props;
     const { activeTab } = this.state;
+
+    if (isAuthenticated) {
+      return <Redirect to="/chat" />;
+    }
 
     return (
       <Fragment>

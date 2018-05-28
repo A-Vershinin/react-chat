@@ -4,7 +4,7 @@ import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE,
 } from '../constans/index';
 
-export function signup(username, password) {
+export function signupAction(username, password) {
 	return (dispatch) => {
 		dispatch({
 			type: SIGNUP_REQUEST,
@@ -22,11 +22,16 @@ export function signup(username, password) {
        },
      })
      .then(response => response.json())
-     .then(json => dispatch({
+     .then(json => {
+			 if (json.success) {
+				 return json
+			 }
+			 throw new Error(json.message)
+		 })
+		 .then(json => dispatch({
 				 type: SIGNUP_SUCCESS,
 				 payload: json,
-			 })
-	 		)
+			}))
      .catch(reason => dispatch({
 				 type: SIGNUP_FAILURE,
 				 payload: reason,
@@ -35,7 +40,7 @@ export function signup(username, password) {
 	};
 }
 
-export function login(username, password) {
+export function loginAction(username, password) {
 	return (dispatch) => {
 		dispatch({
 			type: LOGIN_REQUEST,
@@ -51,6 +56,12 @@ export function login(username, password) {
        },
      })
      .then(response => response.json())
+		 .then(json => {
+			if (json.success) {
+				return json
+			}
+			throw new Error(json.message)
+		})
      .then(json => dispatch({
 				 type: LOGIN_SUCCESS,
 				 payload: json,
@@ -64,7 +75,7 @@ export function login(username, password) {
 	};
 }
 
-export function logout() {
+export function logoutAction() {
 	return (dispatch) => {
 		dispatch({
 			type: LOGOUT_REQUEST,

@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ChatPage from './ChatPage.jsx';
-import WelcomePage from './WelcomePage.jsx'
+import ChatPage from '../containers/ChatPage';
+import WelcomePage from '../containers/WelcomePage';
 import configureStore from '../store/index';
 
 const store = configureStore();

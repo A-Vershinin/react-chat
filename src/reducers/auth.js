@@ -12,14 +12,23 @@ const initialState = {
 
 export function authReducer(state = initialState, action) {
   switch (action.type) {
-    case SIGNUP_REQUEST:
+    case SIGNUP_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         ...state,
-
+        isAuthenticated: true,
+        user: action.payload.user,
+        token: action.payload.token,
       };
-    case LOGIN_REQUEST:
-    case LOGOUT_REQUEST:
-      return state
+    case SIGNUP_FAILURE:
+    case LOGIN_FAILURE:
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+        token: '',
+      }
     default:
       return state;
   }
