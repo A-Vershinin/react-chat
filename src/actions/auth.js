@@ -28,10 +28,17 @@ export function signupAction(username, password) {
 			 }
 			 throw new Error(json.message)
 		 })
-		 .then(json => dispatch({
+		 .then(json => {
+			 	if (!json.token) {
+					throw new Error ('Token has not been provided!')
+				}
+				// save JWT to localStorage
+				localStorage.setItem('token', json.token);
+        dispatch({
 				 type: SIGNUP_SUCCESS,
 				 payload: json,
-			}))
+			})
+    })
      .catch(reason => dispatch({
 				 type: SIGNUP_FAILURE,
 				 payload: reason,
@@ -62,11 +69,17 @@ export function loginAction(username, password) {
 			}
 			throw new Error(json.message)
 		})
-     .then(json => dispatch({
-				 type: LOGIN_SUCCESS,
-				 payload: json,
+		.then(json => {
+				 if (!json.token) {
+					 throw new Error ('Token has not been provided!')
+				 }
+				 // save JWT to localStorage
+				 localStorage.setItem('token', json.token);
+				 dispatch({
+					type: LOGIN_SUCCESS,
+					payload: json,
 			 })
-	 		)
+		 })
      .catch(reason => dispatch({
 				 type: LOGIN_FAILURE,
 				 payload: reason,

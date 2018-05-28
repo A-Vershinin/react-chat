@@ -4,8 +4,10 @@ import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE,
 } from '../constans/index';
 
+const token = localStorage.getItem('token');
+
 const initialState = {
-	isAuthenticated: false,
+	isAuthenticated: !!token,
 	user: {},
 	token: '',
 };
