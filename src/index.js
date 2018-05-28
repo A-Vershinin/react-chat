@@ -4,4 +4,13 @@ import 'typeface-roboto';
 import './index.css';
 import App from './components/App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+const node = document.getElementById('root');
+
+ReactDOM.render(<App />, node);
+
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    ReactDOM.render(<App />, node)
+  })
+}
