@@ -1,8 +1,7 @@
 import React from 'react';
-import { withStyles } from 'material-ui';
-import fetch from 'isomorphic-fetch';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   signUpButton: {
