@@ -1,3 +1,5 @@
+export const REDIRECT = Symbol('REDIRECT');
+
 export const SIGNUP_REQUEST = Symbol('SIGNUP_REQUEST');
 export const SIGNUP_SUCCESS = Symbol('SIGNUP_SUCCESS');
 export const SIGNUP_FAILURE = Symbol('SIGNUP_FAILURE');
