@@ -105,26 +105,26 @@ export function resieveAuth() {
 
 		fetch('http://localhost:8000/v1/users/me', {
        headers: {
-				 'Autherization': `Barer ${token}`,
+				 'Authorization': `Bearer ${token}`,
          'Accept': 'application/json',
          'Content-Type': 'application/json',
        },
      })
      .then(response => response.json())
 		 .then(json => {
-			if (json.success) {
-				return json
-			}
-			throw new Error(json.message)
-		})
-		.then(json => dispatch({
-			type: types.RESIEVE_AUTH_SUCCESS,
-			payload: json,
-		}))
-     .catch(reason => dispatch({
-				 type: types.RESIEVE_AUTH_FAILURE,
-				 payload: reason,
-			 })
-		 );
+  			if (json.success) {
+  				return json
+  			}
+  			throw new Error(json.message)
+    	})
+  		.then(json => dispatch({
+  			type: types.RESIEVE_AUTH_SUCCESS,
+  			payload: json,
+  		}))
+      .catch(reason => dispatch({
+  				 type: types.RESIEVE_AUTH_FAILURE,
+  				 payload: reason,
+  			 })
+  		);
 	};
 }
