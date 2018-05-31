@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import Divider from 'material-ui/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from 'material-ui/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigation';
 import ExploreIcon from '@material-ui/icons/Explore';
 import RestoreIcon from '@material-ui/icons/Restore';
 
-import titleInitials from '../utils/title-initials'
+import ChatList from './ChatList.jsx';
 
 const styles = theme => ({
   drawerPaper: {
     position: 'relative',
-    height: '100%',
+    height: '100vh',
     width: 320,
   },
   drawerHeader: {
@@ -27,41 +24,39 @@ const styles = theme => ({
     paddingRight: theme.spacing.unit * 3,
   },
   newChatButton: {
-    position: 'absolute',
+    position: 'absolute!important',
     left: 'auto',
     right: theme.spacing.unit * 3,
     bottom: theme.spacing.unit * 3 + 48,
   },
 });
 
-const Sidebar = props => {
-  const { classes, chats } = props;
 
-  return (
-    <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
-      <div className={classes.drawerHeader}>
-        <TextField fullWidth margin="normal" placeholder="Search chats..." />
+class Sidebar extends Component {
+  render() {
+    const { classes, chats } = this.props;
+
+    return (
+      <div>
+        <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
+          <div className={classes.drawerHeader}>
+            <TextField fullWidth margin="normal" placeholder="Search chats..." />
+          </div>
+          <Divider />
+          <ChatList chats={chats}/>
+          <Button variant="fab"  color="primary" className={classes.newChatButton} >
+            <AddIcon />
+          </Button>
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="My Chats" value="my chats" icon={<RestoreIcon />}  />
+            <BottomNavigationAction label="Explore" value="explore" icon={<ExploreIcon />} />
+          </BottomNavigation>
+        </Drawer>
       </div>
-      <Divider />
-      <List className={classes.chatsList}>
-        {
-          chats.map((chat, index) => (
-            <ListItem key={index} button>
-              <Avatar>{titleInitials(chat.title)}</Avatar>
-              <ListItemText primary={chat.title}/>
-            </ListItem>
-          ))
-        }
-      </List>
-      <Button variant="fab" color="primary" className={classes.newChatButton}>
-        <AddIcon />
-      </Button>
-      <BottomNavigation showLabels>
-        <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
-      </BottomNavigation>
-    </Drawer>
-  );
+    );
+  }
 }
+
+
 
 export default withStyles(styles)(Sidebar);

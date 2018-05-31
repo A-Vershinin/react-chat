@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
-import Chat from './Chat.jsx';
+import ChatMessages from './ChatMessages.jsx';
 
 import { chats, messages } from '../mock-data.json';
 
@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-class Layout extends Component {
+class ChatPage extends Component {
   render() {
     const { classes } = this.props;
 
@@ -24,10 +24,10 @@ class Layout extends Component {
       <div className={classes.root}>
         <ChatHeader />
         <Sidebar chats={chats}/>
-        <Chat messages={messages}/>
+        <ChatMessages messages={messages}/>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(Layout);
+export default withStyles(styles)(ChatPage);

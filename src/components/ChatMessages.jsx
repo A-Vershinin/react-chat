@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import ChatList from './ChatList.jsx';
+import { withStyles } from '@material-ui/core/styles';
+import ChatMessageList from './ChatMessageList.jsx';
 
 import InputMessage from './InputMessage.jsx';
 
@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 });
 
-class Chat extends Component {
+class ChatMessages extends Component {
   constructor(props){
     super(props);
     this.refMessagesWrapper = React.createRef();
@@ -41,11 +41,11 @@ class Chat extends Component {
 
     return (
       <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
-        <ChatList messages={messages} />
+        <ChatMessageList messages={messages} />
         <InputMessage />
       </main>
     );
   }
 }
 
-export default withStyles(styles)(Chat);
+export default withStyles(styles)(ChatMessages);
