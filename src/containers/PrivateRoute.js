@@ -31,13 +31,13 @@ const mapStateToProps = state => ({
 });
 
 
-// const mapDispatchToProps = dispatch => ({
-//     resieveAuth: () => dispatch(resieveAuth()),
-// });
-
-const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators(resieveAuth, dispatch),
+const mapDispatchToProps = dispatch => ({
+    resieveAuth: () => dispatch(resieveAuth()),
 });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   ...bindActionCreators(resieveAuth, dispatch),
+// });
 
 
 export default withRouter(connect(
