@@ -9,7 +9,7 @@ export function fetchMyChats() {
       type: types.FETCH_MY_CHATS_REQUEST,
     })
 
-    return callApi('/chats/my', token)
+    return callApi('chats/my', token)
       .then(data => dispatch({
         type: types.FETCH_MY_CHATS_SUCCESS,
         payload: data,
@@ -28,7 +28,7 @@ export function fetchAllChats() {
       type: types.FETCH_All_CHATS_REQUEST,
     })
 
-    return callApi('/chats', token)
+    return callApi('chats', token)
       .then(data => dispatch({
         type: types.FETCH_All_CHATS_SUCCESS,
         payload: data,

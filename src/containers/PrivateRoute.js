@@ -7,7 +7,7 @@ import { resieveAuth } from '../actions';
 class PrivateRoute extends Component {
 
   componentDidMount() {
-    // this.props.resieveAuth();
+    this.props.resieveAuth();
   }
 
   render() {

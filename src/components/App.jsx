@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PrivateRoute from '../containers/PrivateRoute';

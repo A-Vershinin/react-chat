@@ -9,10 +9,10 @@ const initialState = {
 };
 
 
-const activeIdReducer = (state = initialState.activeId, action) => {
+const activeId = (state = initialState.activeId, action) => {
     switch (action) {
       case types.SET_ACTIVE_CHAT:
-        return action.payload.chat._id;
+        return getChatId(action.payload.chat);
       case types.UNSET_ACTIVE_CHAT:
         return '';
       default:
@@ -20,25 +20,25 @@ const activeIdReducer = (state = initialState.activeId, action) => {
     }
 }
 
-const allIdsReducer = (state = initialState.allIds, action) => {
+const allIds = (state = initialState.allIds, action) => {
     switch (action) {
       case types.FETCH_All_CHATS_SUCCESS:
-        return action.payload.chats.map(getChatId)
+        return action.payload.chats.map(getChatId);
       default:
         return state;
     }
 }
 
-const myIdsReducer = (state = initialState.myIds, action) => {
+const myIds = (state = initialState.myIds, action) => {
     switch (action) {
       case types.FETCH_MY_CHATS_SUCCESS:
-        return action.payload.chats.map(getChatId)
+         return action.payload.chats.map(getChatId);
       default:
         return state;
     }
 }
 
-const byIdsReducer = (state = initialState.byIds, action) => {
+const byIds = (state = initialState.byIds, action) => {
     switch (action) {
       case types.FETCH_All_CHATS_SUCCESS:
       case types.FETCH_MY_CHATS_SUCCESS:
@@ -55,11 +55,12 @@ const byIdsReducer = (state = initialState.byIds, action) => {
 }
 
 export default combineReducers({
-  activeIdReducer,
-  allIdsReducer,
-  myIdsReducer,
-  byIdsReducer
+  activeId,
+  allIds,
+  myIds,
+  byIds
 });
 
-export const getChatId = chat => chat._id;
-export const getByIds = (state, ids) => ids.map(id => state.byIds[id]);
+export const getChatId = (chat) => chat._id;
+export const getById = (state, id) => state.byIds[id];
+export const getByIds = (state, ids) => ids.map(id => getById(state, id));
