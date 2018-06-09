@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import ExploreIcon from '@material-ui/icons/Explore';
 import RestoreIcon from '@material-ui/icons/Restore';
 
@@ -33,7 +33,15 @@ const styles = theme => ({
 
 
 class Sidebar extends Component {
+  state = {
+     value: 0,
+   };
+
+   handleChange = (event, value) => {
+     this.setState({ value });
+   };
   render() {
+    const { value } = this.state;
     const { classes, chats } = this.props;
 
     return (
@@ -47,16 +55,14 @@ class Sidebar extends Component {
           <Button variant="fab"  color="primary" className={classes.newChatButton} >
             <AddIcon />
           </Button>
-          <BottomNavigation showLabels>
-            <BottomNavigationAction label="My Chats" value="my chats" icon={<RestoreIcon />}  />
-            <BottomNavigationAction label="Explore" value="explore" icon={<ExploreIcon />} />
+          <BottomNavigation value={value} onChange={this.handleChange} showLabels>
+            <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+            <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
           </BottomNavigation>
         </Drawer>
       </div>
     );
   }
 }
-
-
 
 export default withStyles(styles)(Sidebar);

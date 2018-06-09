@@ -26,19 +26,16 @@ class PrivateRoute extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
 
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
     resieveAuth: () => dispatch(resieveAuth()),
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   ...bindActionCreators(resieveAuth, dispatch),
-// });
-
 
 export default withRouter(connect(
   mapStateToProps,

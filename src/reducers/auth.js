@@ -4,8 +4,8 @@ const token = localStorage.getItem('token');
 
 const initialState = {
 	isAuthenticated: !!token,
+  token,
 	user: {},
-	token: '',
 };
 
 export function authReducer(state = initialState, action) {

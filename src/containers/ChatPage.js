@@ -10,7 +10,6 @@ import * as fromChats from '../reducers/chats';
 // });
 
 function mapStateToProps(state) {
-  console.log("CHATSSS", state.chats)
   return {
 	   chats: fromChats.getByIds(state.chats, state.chats.allIds),
   }

@@ -21,7 +21,7 @@ const activeId = (state = initialState.activeId, action) => {
 }
 
 const allIds = (state = initialState.allIds, action) => {
-    switch (action) {
+    switch (action.type) {
       case types.FETCH_All_CHATS_SUCCESS:
         return action.payload.chats.map(getChatId);
       default:

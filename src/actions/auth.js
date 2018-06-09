@@ -34,7 +34,7 @@ export function loginAction(username, password) {
 		dispatch({
 			type: types.LOGIN_REQUEST,
 		})
-		return callApi('/login', undefined, { method: "POST" }, {
+		return callApi('login', undefined, { method: "POST" }, {
       username, password
     })
 		.then(json => {
@@ -75,7 +75,7 @@ export function resieveAuth() {
 			})
 		}
 
-		callApi('/users/me', token)
+		callApi('users/me', token)
   		.then(json => dispatch({
   			type: types.RESIEVE_AUTH_SUCCESS,
   			payload: json,
