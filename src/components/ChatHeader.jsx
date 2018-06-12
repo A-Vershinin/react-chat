@@ -23,7 +23,7 @@ const styles = theme => ({
 class ChatHeader extends React.Component {
 
   render() {
-    const { classes } = this.props;
+    const { classes, logout } = this.props;
 
     return (
       <AppBar position="absolute" className={classes.appBar}>
@@ -32,7 +32,7 @@ class ChatHeader extends React.Component {
             DogeCodes React Chat
           </Typography>
           <ChatMenu />
-          <UserMenu />
+          <UserMenu onLogoutClick={logout}/>
         </Toolbar>
       </AppBar>
     );

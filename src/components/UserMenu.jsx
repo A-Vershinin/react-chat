@@ -24,8 +24,13 @@ class UserMenu extends Component {
     this.setState({ anchorEl: null });
   };
 
+  handleLogoutClick = () => {
+    this.props.onLogoutClick();
+    this.handleClose();
+  }
+
   render() {
-    const { auth, anchorEl } = this.state;
+    const { anchorEl } = this.state;
     const { classes, disabled = false } = this.props;
     const open = Boolean(anchorEl);
 
@@ -43,8 +48,8 @@ class UserMenu extends Component {
             anchorEl={anchorEl}
             open={open}
             onClose={this.handleClose}>
-            <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-            <MenuItem onClick={this.handleClose}>My account</MenuItem>
+            <MenuItem onClick={this.handleClose}>Edit Profile</MenuItem>
+            <MenuItem onClick={this.handleLogoutClick}>Logout</MenuItem>
           </Menu>
         </div>
       </Fragment>

@@ -26,7 +26,7 @@ class ChatMenu extends Component {
   }
   render() {
     const { anchorEl } = this.state;
-    const { classes, disabled = false } = this.props;
+    const { disabled = false } = this.props;
 
     return (
       <Fragment>

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ChatPage from '../components/ChatPage.jsx';
 import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat } from '../actions/chats';
+import { logoutAction as logout } from '../actions/auth';
 import * as fromChats from '../reducers/chats';
 
 
@@ -21,7 +22,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchAllChats,
 	fetchChat,
 	setActiveChat,
+  logout,
 }, dispatch);
+
 
 export default connect(
 	mapStateToProps,
