@@ -5,22 +5,11 @@ import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat } from '../action
 import * as fromChats from '../reducers/chats';
 
 
-// const mapStateToProps = state => ({
-// 	chats: fromChats.getByIds(state.chats, state.chats.allIdsReducer),
-// });
-
 function mapStateToProps(state) {
   return {
 	   chats: fromChats.getByIds(state.chats, state.chats.allIds),
   }
 };
-
-// const mapDispatchToProps = (dispatch) => ({
-//   fetchMyChats: () => dispatch(fetchMyChats()),
-//   fetchAllChats: () => dispatch(fetchAllChats()),
-//   fetchChat: () => dispatch(fetchChat()),
-//   setActiveChat: () => dispatch(setActiveChat()),
-// });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchMyChats,

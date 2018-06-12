@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 const initialState = {
   activeId: '',
   allIds: [],
-  myIds: '',
+  myIds: [],
   byIds: {},
 };
 
@@ -23,32 +23,35 @@ const activeId = (state = initialState.activeId, action) => {
 const allIds = (state = initialState.allIds, action) => {
     switch (action.type) {
       case types.FETCH_All_CHATS_SUCCESS:
-        return action.payload.chats.map(getChatId);
-      default:
-        return state;
-    }
-}
-
-const myIds = (state = initialState.myIds, action) => {
-    switch (action) {
-      case types.FETCH_MY_CHATS_SUCCESS:
          return action.payload.chats.map(getChatId);
       default:
         return state;
     }
 }
 
+const myIds = (state = initialState.myIds, action) => {
+    switch (action.type) {
+      case types.FETCH_MY_CHATS_SUCCESS:
+         return [
+           ...state,
+           action.payload.chats.map(getChatId),
+         ];
+      default:
+        return state;
+    }
+}
+
 const byIds = (state = initialState.byIds, action) => {
-    switch (action) {
+    switch (action.type) {
       case types.FETCH_All_CHATS_SUCCESS:
       case types.FETCH_MY_CHATS_SUCCESS:
         return {
-          ...state,
-          ...action.payload.chats.reduce((ids, chat) => ({
-            ...ids,
-            [chat._id]: chat,
-          }), {}),
-        }
+       ...state,
+       ...action.payload.chats.reduce((ids, chat) => ({
+         ...ids,
+         [getChatId(chat)]: chat,
+       }), {}),
+     }
       default:
         return state;
     }

@@ -4,7 +4,7 @@ import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import ChatMessages from './ChatMessages.jsx';
 
-import { chats, messages } from '../mock-data.json';
+import { messages } from '../mock-data.json';
 
 const styles = theme => ({
   root: {
@@ -20,7 +20,6 @@ class ChatPage extends Component {
 
   componentDidMount() {
     const { fetchAllChats, fetchMyChats } = this.props;
-    // console.log("EEE")
 
     Promise.all([
       fetchAllChats(),
@@ -29,7 +28,7 @@ class ChatPage extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { chats, classes } = this.props;
 
     return (
       <div className={classes.root}>
