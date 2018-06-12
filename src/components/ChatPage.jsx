@@ -17,6 +17,17 @@ const styles = theme => ({
 });
 
 class ChatPage extends Component {
+
+  componentDidMount() {
+    const { fetchAllChats, fetchMyChats } = this.props;
+    // console.log("EEE")
+
+    Promise.all([
+      fetchAllChats(),
+      fetchMyChats()
+    ]);
+  }
+
   render() {
     const { classes } = this.props;
 

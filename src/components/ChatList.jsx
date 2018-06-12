@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ChatItem from './ChatItem';
