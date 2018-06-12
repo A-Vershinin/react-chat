@@ -5,7 +5,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from './Avatar.jsx';
 
 
-const ChatItem = ({ title  }) => {
+const ChatItem = ({ title }) => {
+
   return (
     <ListItem button>
       <Avatar colorFrom={title}>{title}</Avatar>

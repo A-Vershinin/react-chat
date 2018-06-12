@@ -47,7 +47,7 @@ export function fetchChat(chatId) {
       type: types.FETCH_CHAT_REQUEST,
     })
 
-    return callApi(`/chats/${chatId}`, token)
+    return callApi(`/chats`, token, )
       .then(data => {
         dispatch({
           type: types.FETCH_CHAT_SUCCESS,
@@ -58,7 +58,8 @@ export function fetchChat(chatId) {
       .catch(reason => dispatch({
         type: types.FETCH_CHAT_FAILURE,
         payload: reason,
-      }))
+      })
+    )
 	};
 };
 
@@ -80,3 +81,32 @@ export function setActiveChat(chatId) {
       })
   };
 };
+
+export function createChat(title) {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    dispatch({
+      type: types.CREATE_CHAT_REQUEST,
+      payload: { title }
+    })
+
+    return callApi('/chats', token, { method: 'POST' }, {
+      data: { title }
+    })
+      .then(({ chat }) => {
+        dispatch({
+          type: types.CREATE_CHAT_SUCCESS,
+          payload: { chat },
+        });
+
+        dispatch(redirect(`/chat/${chat._id}`));
+        return chat;
+      })
+      .catch(reason => dispatch({
+        type: types.CREATE_CHAT_FAILURE,
+        payload: reason,
+      })
+    );
+  }
+}

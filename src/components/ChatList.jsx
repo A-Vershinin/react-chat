@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ChatItem from './ChatItem';
+import ChatItem from './ChatItem.jsx';
 
 const styles = theme => ({
   chatsList: {
@@ -11,6 +11,7 @@ const styles = theme => ({
 });
 
 const ChatList = ({ classes, chats }) => {
+
   return (
       <List className={classes.chatsList}>
         {chats && chats.map((chat, index) => (
