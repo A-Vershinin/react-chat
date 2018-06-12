@@ -77,7 +77,6 @@ export function setActiveChat(chatId) {
           type: types.SET_ACTIVE_CHAT,
           payload: data,
         })
-
       })
   };
 };

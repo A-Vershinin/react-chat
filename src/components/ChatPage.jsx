@@ -33,7 +33,7 @@ class ChatPage extends Component {
     return (
       <div className={classes.root}>
         <ChatHeader />
-        <Sidebar chats={chats}/>
+        <Sidebar chats={chats.all}/>
         <ChatMessages messages={messages}/>
       </div>
     );
