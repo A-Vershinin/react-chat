@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import ChatMessageList from './ChatMessageList.jsx';
 
@@ -37,15 +38,19 @@ class ChatMessages extends Component {
   }
 
   render() {
-    const { classes, messages } = this.props;
+    const { classes, messages, activeChat, joinChat } = this.props;
 
     return (
       <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
-        <ChatMessageList messages={messages} />
-        <InputMessage />
+        <ChatMessageList
+          messages={messages}
+        />
+        {activeChat && <InputMessage
+          onJoinButtonClick={() => joinChat(activeChat._id)}
+        />}
       </main>
     );
   }
 }
 
-export default withStyles(styles)(ChatMessages);
+export default withRouter(withStyles(styles)(ChatMessages));

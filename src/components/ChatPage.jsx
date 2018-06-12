@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import ChatMessages from './ChatMessages.jsx';
 
-import { chats, messages } from '../mock-data.json';
+import { messages } from '../mock-data.json';
 
 const styles = theme => ({
   root: {
@@ -19,26 +20,51 @@ const styles = theme => ({
 class ChatPage extends Component {
 
   componentDidMount() {
-    const { fetchAllChats, fetchMyChats } = this.props;
-    // console.log("EEE")
+    const { match, fetchAllChats, fetchMyChats, setActiveChat } = this.props;
 
-    Promise.all([
-      fetchAllChats(),
-      fetchMyChats()
-    ]);
+    Promise.all([fetchAllChats(), fetchMyChats()])
+      .then(() => {
+        if (match.params.chatId) {
+          setActiveChat(match.params.chatId);
+        }
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { match: { params }, setActiveChat } = this.props;
+    const { params: nextParams } = nextProps.match;
+
+    // If we change route, then fetch messages from chat by chatID
+    if (nextParams.chatId && params.chatId !== nextParams.chatId) {
+      setActiveChat(nextParams.chatId);
+    }
   }
 
   render() {
-    const { classes } = this.props;
+    const { chats, classes, logout, disabled = false, createChat, deleteChat, joinChat, leaveChat } = this.props;
 
     return (
       <div className={classes.root}>
-        <ChatHeader />
-        <Sidebar chats={chats}/>
-        <ChatMessages messages={messages}/>
+        <ChatHeader
+          logout={logout}
+          disabled={disabled}
+          activeChat={chats.active}
+          deleteChat={deleteChat}
+          leaveChat={leaveChat}
+        />
+        <Sidebar
+          chats={chats}
+          disabled={disabled}
+          createChat={createChat}
+        />
+        <ChatMessages
+          messages={messages}
+          activeChat={chats.active}
+          joinChat={joinChat}
+        />
       </div>
     );
   }
 }
 
-export default withStyles(styles)(ChatPage);
+export default withRouter(withStyles(styles)(ChatPage));

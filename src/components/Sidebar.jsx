@@ -3,13 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import ExploreIcon from '@material-ui/icons/Explore';
 import RestoreIcon from '@material-ui/icons/Restore';
-
+import NewChatButton from './NewChatButton.jsx';
 import ChatList from './ChatList.jsx';
 
 const styles = theme => ({
@@ -23,26 +21,36 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 3,
     paddingRight: theme.spacing.unit * 3,
   },
-  newChatButton: {
-    position: 'absolute!important',
-    left: 'auto',
-    right: theme.spacing.unit * 3,
-    bottom: theme.spacing.unit * 3 + 48,
-  },
 });
 
 
 class Sidebar extends Component {
   state = {
-     value: 0,
+     activeTab: 0,
+     searchValue: '',
    };
 
-   handleChange = (event, value) => {
-     this.setState({ value });
-   };
+   handleTabChange = (event, value) => {
+     this.setState({
+       activeTab: value,
+     })
+   }
+
+   filterChats = (chats) => {
+    const { searchValue } = this.state;
+
+    return chats
+      .filter(chat => chat.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase()))
+        .sort((one, two) =>
+        one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1
+      );
+    }
+
   render() {
-    const { value } = this.state;
-    const { classes, chats } = this.props;
+    const { activeTab } = this.state;
+    const { classes, chats, createChat, disabled } = this.props;
 
     return (
       <div>
@@ -51,11 +59,13 @@ class Sidebar extends Component {
             <TextField fullWidth margin="normal" placeholder="Search chats..." />
           </div>
           <Divider />
-          <ChatList chats={chats}/>
-          <Button variant="fab"  color="primary" className={classes.newChatButton} >
-            <AddIcon />
-          </Button>
-          <BottomNavigation value={value} onChange={this.handleChange} showLabels>
+          <ChatList
+            disabled={disabled}
+            chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
+            activeChat={chats.active}
+          />
+          <NewChatButton onCreateChat={createChat}/>
+          <BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
             <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
             <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
           </BottomNavigation>

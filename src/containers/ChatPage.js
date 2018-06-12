@@ -1,33 +1,35 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ChatPage from '../components/ChatPage.jsx';
-import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat } from '../actions/chats';
+import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat, createChat, deleteChat, joinChat, leaveChat } from '../actions/chats';
+import { logoutAction as logout } from '../actions/auth';
 import * as fromChats from '../reducers/chats';
 
 
-// const mapStateToProps = state => ({
-// 	chats: fromChats.getByIds(state.chats, state.chats.allIdsReducer),
-// });
-
 function mapStateToProps(state) {
+  const activeChat = fromChats.getById(state.chats, state.chats.activeId);
+  // console.log("myChat", activeChat)
   return {
-	   chats: fromChats.getByIds(state.chats, state.chats.allIds),
+	   chats: {
+       active: activeChat,
+       all: fromChats.getByIds(state.chats, state.chats.allIds),
+       my: fromChats.getByIds(state.chats, state.chats.myIds),
+     },
   }
 };
-
-// const mapDispatchToProps = (dispatch) => ({
-//   fetchMyChats: () => dispatch(fetchMyChats()),
-//   fetchAllChats: () => dispatch(fetchAllChats()),
-//   fetchChat: () => dispatch(fetchChat()),
-//   setActiveChat: () => dispatch(setActiveChat()),
-// });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchMyChats,
 	fetchAllChats,
 	fetchChat,
 	setActiveChat,
+  logout,
+  createChat,
+  deleteChat,
+  joinChat,
+  leaveChat,
 }, dispatch);
+
 
 export default connect(
 	mapStateToProps,

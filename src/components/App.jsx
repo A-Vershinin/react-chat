@@ -17,7 +17,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={WelcomePage} />
             <Route exact path='/welcome' component={WelcomePage} />
-            <PrivateRoute path='/chat' component={ChatPage} />
+            <PrivateRoute path='/chat/:chatId?' component={ChatPage} />
             <Redirect to="/" />
           </Switch>
         </Router>

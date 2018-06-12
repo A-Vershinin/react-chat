@@ -61,7 +61,23 @@ export function logoutAction() {
 		dispatch({
 			type: types.LOGOUT_REQUEST,
 		})
-	};
+   return callApi('logout')
+		 .then(json => {
+		 		 // remove JWT from localStorage
+		 		 localStorage.removeItem('token');
+
+		 		 // redirect to welcome page when case failure
+		 		dispatch({
+		 			type: types.LOGOUT_SUCCESS,
+		 			payload: json,
+		 	 	})
+		  })
+		.catch(reason => dispatch({
+				 type: types.LOGOUT_FAILURE,
+				 payload: reason,
+			})
+		)
+ 	};
 }
 
 

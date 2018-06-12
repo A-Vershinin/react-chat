@@ -24,9 +24,6 @@ export function authReducer(state = initialState, action) {
         isAuthenticated: true,
         user: action.payload.user,
       }
-    case types.SIGNUP_FAILURE:
-    case types.LOGIN_FAILURE:
-    case types.RESIEVE_AUTH_FAILURE:
     case types.LOGOUT_SUCCESS:
       return {
         ...state,
@@ -34,6 +31,9 @@ export function authReducer(state = initialState, action) {
         user: null,
         token: '',
       }
+    case types.SIGNUP_FAILURE:
+    case types.LOGIN_FAILURE:
+    case types.RESIEVE_AUTH_FAILURE:
     default:
       return state;
   }

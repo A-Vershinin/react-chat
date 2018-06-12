@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from './Avatar.jsx';
 import ChatMessageItem from './ChatMessageItem.jsx';
@@ -56,4 +57,4 @@ const ChatMessageList = props => {
   );
 }
 
-export default withStyles(styles)(ChatMessageList);
+export default withRouter(withStyles(styles)(ChatMessageList));
