@@ -15,7 +15,7 @@ const styles = theme => ({
 class NewChatButton extends Component {
   state = {
     title: {
-      value: 'Angular.js chat',
+      value: '',
       isValid: true,
     }
   }
@@ -35,6 +35,7 @@ class NewChatButton extends Component {
     }
 
     this.props.onCreateChat(title.value);
+    // this.props.onCreateChat('GrapgQl.js chat');
 
     this.setState({
       title: {

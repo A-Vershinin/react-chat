@@ -22,6 +22,7 @@ class ChatMenu extends Component {
   }
 
   handleDeleteClick = () => {
+    this.props.onDeleteChat();
     this.handleClose();
   }
   render() {

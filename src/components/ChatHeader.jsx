@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import UserMenu from './UserMenu.jsx';
 import ChatMenu from './ChatMenu.jsx';
+import Avatar from './Avatar.jsx';
 
 const styles = theme => ({
   appBar: {
@@ -20,19 +21,34 @@ const styles = theme => ({
   },
 });
 
-class ChatHeader extends React.Component {
+class ChatHeader extends Component {
 
   render() {
-    const { classes, logout } = this.props;
+    const { classes, logout, activeChat, deleteChat, leaveChat } = this.props;
 
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar color="contrast">
-          <Typography variant="title" color="inherit" noWrap className={classes.appBarTitle}>
-            DogeCodes React Chat
-          </Typography>
-          <ChatMenu />
-          <UserMenu onLogoutClick={logout}/>
+          {activeChat ? (
+            <Fragment>
+              <Avatar colorFrom={activeChat._id}>
+                {activeChat.title}
+              </Avatar>
+              <Typography variant="title" className={classes.appBarTitle}>
+                {activeChat.title}
+                <ChatMenu
+                  onDeleteChat={() => deleteChat(activeChat._id)}
+                />
+              </Typography>
+            </Fragment>
+          ) : (
+            <Typography variant="title" color="inherit" noWrap className={classes.appBarTitle}>
+              DogeCodes React Chat
+            </Typography>
+          )}
+          <UserMenu
+            onLogoutClick={logout}
+          />
         </Toolbar>
       </AppBar>
     );

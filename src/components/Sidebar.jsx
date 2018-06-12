@@ -26,17 +26,32 @@ const styles = theme => ({
 
 class Sidebar extends Component {
   state = {
-     value: 0,
+     activeTab: 0,
+     searchValue: '',
    };
 
    handleTabChange = (event, value) => {
-     this.setState({ value });
-   };
+     this.setState({
+       activeTab: value,
+     })
+   }
+
+   filterChats = (chats) => {
+    const { searchValue } = this.state;
+
+    return chats
+      .filter(chat => chat.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase()))
+        .sort((one, two) =>
+        one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1
+      );
+    }
 
   render() {
-    const { value } = this.state;
+    const { activeTab } = this.state;
     const { classes, chats, createChat } = this.props;
-    // console.log("chats", chats)
+
     return (
       <div>
         <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
@@ -44,9 +59,12 @@ class Sidebar extends Component {
             <TextField fullWidth margin="normal" placeholder="Search chats..." />
           </div>
           <Divider />
-          <ChatList chats={chats}/>
+          <ChatList
+            chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
+            activeChat={chats.active}
+          />
           <NewChatButton onCreateChat={createChat}/>
-          <BottomNavigation value={value} onChange={this.handleTabChange} showLabels>
+          <BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
             <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
             <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
           </BottomNavigation>
