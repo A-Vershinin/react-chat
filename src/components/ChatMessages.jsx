@@ -38,15 +38,16 @@ class ChatMessages extends Component {
   }
 
   render() {
-    const { classes, messages, activeChat } = this.props;
+    const { classes, messages, activeChat, joinChat } = this.props;
 
     return (
       <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
         <ChatMessageList
           messages={messages}
-          // onJoinButtonClick={() => joinChat(activeChat._id)}
         />
-        <InputMessage />
+        {activeChat && <InputMessage
+          onJoinButtonClick={() => joinChat(activeChat._id)}
+        />}
       </main>
     );
   }

@@ -12,7 +12,7 @@ const styles = theme => ({
   }
 });
 
-const ChatItem = ({ classes, title, chatId, active, disabled = false }) => {
+const ChatItem = ({ classes, title, chatId, active, disabled }) => {
 
   return (
     <ListItem
@@ -22,7 +22,7 @@ const ChatItem = ({ classes, title, chatId, active, disabled = false }) => {
       className={active ? classes.activeItem : ''}
       disabled={disabled}
     >
-      <Avatar colorFrom={chatId}>{title}</Avatar>
+      <Avatar colorFrom={title}>{title}</Avatar>
       <ListItemText primary={title}/>
     </ListItem>
   );

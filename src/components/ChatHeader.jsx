@@ -24,8 +24,8 @@ const styles = theme => ({
 class ChatHeader extends Component {
 
   render() {
-    const { classes, logout, activeChat, deleteChat, leaveChat } = this.props;
-
+    const { classes, logout, disabled, activeChat, deleteChat, leaveChat } = this.props;
+    console.log("leaveChat", leaveChat())
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar color="contrast">
@@ -37,7 +37,9 @@ class ChatHeader extends Component {
               <Typography variant="title" className={classes.appBarTitle}>
                 {activeChat.title}
                 <ChatMenu
+                  disabled={disabled}
                   onDeleteChat={() => deleteChat(activeChat._id)}
+                  onLeaveChat={() => leaveChat(activeChat._id)}
                 />
               </Typography>
             </Fragment>

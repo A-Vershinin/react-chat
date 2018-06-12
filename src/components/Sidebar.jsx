@@ -50,7 +50,7 @@ class Sidebar extends Component {
 
   render() {
     const { activeTab } = this.state;
-    const { classes, chats, createChat } = this.props;
+    const { classes, chats, createChat, disabled } = this.props;
 
     return (
       <div>
@@ -60,6 +60,7 @@ class Sidebar extends Component {
           </div>
           <Divider />
           <ChatList
+            disabled={disabled}
             chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
             activeChat={chats.active}
           />

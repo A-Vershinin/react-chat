@@ -18,6 +18,7 @@ class ChatMenu extends Component {
   };
 
   handleLeaveClick = () => {
+    this.props.onLeaveChat();
     this.handleClose();
   }
 
@@ -27,7 +28,7 @@ class ChatMenu extends Component {
   }
   render() {
     const { anchorEl } = this.state;
-    const { disabled = false } = this.props;
+    const { disabled } = this.props;
 
     return (
       <Fragment>
