@@ -24,20 +24,21 @@ const styles = theme => ({
 class ChatHeader extends Component {
 
   render() {
-    const { classes, logout, disabled, activeChat, deleteChat, leaveChat } = this.props;
-    console.log("leaveChat", leaveChat())
+    const { classes, logout, disabled, activeUser, activeChat, deleteChat, leaveChat, editUser } = this.props;
+
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar color="contrast">
           {activeChat ? (
             <Fragment>
-              <Avatar colorFrom={activeChat._id}>
+              <Avatar colorFrom={activeChat.title}>
                 {activeChat.title}
               </Avatar>
               <Typography variant="title" className={classes.appBarTitle}>
                 {activeChat.title}
                 <ChatMenu
                   disabled={disabled}
+                  activeUser={activeUser}
                   onDeleteChat={() => deleteChat(activeChat._id)}
                   onLeaveChat={() => leaveChat(activeChat._id)}
                 />
@@ -45,11 +46,14 @@ class ChatHeader extends Component {
             </Fragment>
           ) : (
             <Typography variant="title" color="inherit" noWrap className={classes.appBarTitle}>
-              DogeCodes React Chat
+              React Chat
             </Typography>
           )}
           <UserMenu
+            disabled={disabled}
+            activeUser={activeUser}
             onLogoutClick={logout}
+            onEditProfileClick={editUser}
           />
         </Toolbar>
       </AppBar>

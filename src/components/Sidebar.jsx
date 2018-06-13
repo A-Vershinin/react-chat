@@ -30,6 +30,12 @@ class Sidebar extends Component {
      searchValue: '',
    };
 
+   handleSearchChange = (event) => {
+    this.setState({
+      searchValue: event.target.value,
+    });
+  }
+
    handleTabChange = (event, value) => {
      this.setState({
        activeTab: value,
@@ -49,14 +55,20 @@ class Sidebar extends Component {
     }
 
   render() {
-    const { activeTab } = this.state;
+    const { searchValue, activeTab } = this.state;
     const { classes, chats, createChat, disabled } = this.props;
 
     return (
       <div>
         <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
           <div className={classes.drawerHeader}>
-            <TextField fullWidth margin="normal" placeholder="Search chats..." />
+            <TextField
+              fullWidth
+              margin="normal"
+              placeholder="Search chats..."
+              value={searchValue}
+              onChange={this.handleSearchChange}
+            />
           </div>
           <Divider />
           <ChatList

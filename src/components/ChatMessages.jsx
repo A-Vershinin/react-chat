@@ -11,6 +11,7 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
+    width: '100%',
     overflow: 'hidden',
   },
 });
@@ -38,15 +39,19 @@ class ChatMessages extends Component {
   }
 
   render() {
-    const { classes, messages, activeChat, joinChat } = this.props;
+    const { classes, messages, activeChat, joinChat, activeUser, sendMessage  } = this.props;
 
     return (
       <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
         <ChatMessageList
           messages={messages}
+          activeUser={activeUser}
         />
         {activeChat && <InputMessage
+          onSendMessage={(content) => sendMessage(activeChat._id, content)}
+          showJoinButton={!activeUser.isChatMember}
           onJoinButtonClick={() => joinChat(activeChat._id)}
+          activeUser={activeUser}
         />}
       </main>
     );

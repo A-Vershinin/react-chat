@@ -28,7 +28,11 @@ class ChatMenu extends Component {
   }
   render() {
     const { anchorEl } = this.state;
-    const { disabled } = this.props;
+    const { disabled, activeUser } = this.props;
+
+    if (!activeUser.isChatMember) {
+      return null;
+    }
 
     return (
       <Fragment>
@@ -44,13 +48,12 @@ class ChatMenu extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleLeaveClick}>Leave</MenuItem>
-          <MenuItem onClick={this.handleDeleteClick}>Delete</MenuItem>
+          {activeUser.isMember && <MenuItem onClick={this.handleLeaveClick}>Leave</MenuItem>}
+          {activeUser.isCreator && <MenuItem onClick={this.handleDeleteClick}>Delete</MenuItem>}
         </Menu>
       </Fragment>
     );
   }
-
 }
 
 export default ChatMenu;

@@ -5,7 +5,7 @@ import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import ChatMessages from './ChatMessages.jsx';
 
-import { messages } from '../mock-data.json';
+// import { messages } from '../mock-data.json';
 
 const styles = theme => ({
   root: {
@@ -41,16 +41,25 @@ class ChatPage extends Component {
   }
 
   render() {
-    const { chats, classes, logout, disabled = false, createChat, deleteChat, joinChat, leaveChat } = this.props;
+    const {
+      classes,
+      chats, logout,
+      disabled = false,
+      createChat, deleteChat, joinChat, leaveChat,
+      editUser, activeUser,
+      messages, sendMessage,
+    } = this.props;
 
     return (
       <div className={classes.root}>
         <ChatHeader
+          activeUser={activeUser}
           logout={logout}
           disabled={disabled}
           activeChat={chats.active}
           deleteChat={deleteChat}
           leaveChat={leaveChat}
+          editUser={editUser}
         />
         <Sidebar
           chats={chats}
@@ -59,6 +68,8 @@ class ChatPage extends Component {
         />
         <ChatMessages
           messages={messages}
+          sendMessage={sendMessage}
+          activeUser={activeUser}
           activeChat={chats.active}
           joinChat={joinChat}
         />

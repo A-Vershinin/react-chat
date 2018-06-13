@@ -108,6 +108,7 @@ export function createChat(title) {
           payload: { chat },
         });
 
+        dispatch(fetchMyChats());
         dispatch(redirect(`/chat/${chat._id}`));
         return chat;
       })
@@ -180,7 +181,6 @@ export function leaveChat(chatId) {
   return (dispatch, getState) => {
     const { token } = getState().auth;
 
-    
     dispatch({
       type: types.LEAVE_CHAT_REQUEST,
       payload: { chatId }

@@ -28,3 +28,7 @@ export const LEAVE_CHAT_FAILURE = Symbol('chats/LEAVE_CHAT_FAILURE');
 
 export const SET_ACTIVE_CHAT = Symbol('chats/SET_ACTIVE_CHAT');
 export const UNSET_ACTIVE_CHAT = Symbol('chats/UNSET_ACTIVE_CHAT');
+
+export const SEND_MESSAGE_REQUEST = Symbol('chats/SEND_MESSAGE_REQUEST');
+export const SEND_MESSAGE_SUCCESS = Symbol('chats/SEND_MESSAGE_SUCCESS');
+export const SEND_MESSAGE_FAILURE = Symbol('chats/SEND_MESSAGE_FAILURE');
