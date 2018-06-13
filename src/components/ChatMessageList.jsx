@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from './Avatar.jsx';
 import ChatMessageItem from './ChatMessageItem.jsx';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   messagesWrapper: {
@@ -13,48 +15,47 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 3,
     paddingBottom: '120px',
   },
-  messageWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
-  },
-  messageWrappperFromMe: {
-    justifyContent: 'flex-end',
-  },
+  paper: {
+    padding: theme.spacing.unit * 3
+  }
 });
 
-const ChatMessageList = props => {
+class ChatMessageList extends Component {
+  render() {
+    const { classes, match, messages, activeUser } = this.props;
 
-  const {
-    classes,
-    messages
-  } = props;
-
-  return (
-    <div className={classes.messagesWrapper}>
-    {
-      messages && messages.map((message, index) => {
-      const isMessageFromMe = message.sender === 'me';
-
-        const userAvatar = (
-          <Avatar colorFrom={message.sender}>{message.sender}</Avatar>
-        );
-
-        return (
-          <div key={index} className={classNames(classes.messageWrapper,
-            isMessageFromMe && classes.messageWrappperFromMe)}>
-            <ChatMessageItem
-              isMessageFromMe={isMessageFromMe}
-              userAvatar={userAvatar}
-              message={message}
-            />
-        </div>
-        );
-      })
+    if (!match.params.chatId) {
+      return (
+        <Paper className={classes.paper}>
+          <Typography variant="display1" gutterBottom>
+            Start messaging…
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Use <strong>Global</strong> to explore communities around here.
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Use <strong>Recents</strong> to see your recent conversations.
+          </Typography>
+        </Paper>
+      )
     }
-    </div>
-  );
+
+    return messages && messages.length ? (
+      <div className={classes.messagesWrapper}>
+        {messages && messages.map((message, index) => (
+          <ChatMessageItem
+            key={index}
+            activeUser={activeUser}
+            {...message}
+          />
+        ))}
+      </div>
+    ) : (
+      <Typography variant="display1">
+        There is no messages yet...
+      </Typography>
+    )
+  }
 }
 
 export default withRouter(withStyles(styles)(ChatMessageList));

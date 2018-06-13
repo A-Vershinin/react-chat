@@ -180,7 +180,6 @@ export function leaveChat(chatId) {
   return (dispatch, getState) => {
     const { token } = getState().auth;
 
-    
     dispatch({
       type: types.LEAVE_CHAT_REQUEST,
       payload: { chatId }

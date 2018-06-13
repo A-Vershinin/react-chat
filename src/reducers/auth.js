@@ -41,7 +41,6 @@ export function authReducer(state = initialState, action) {
           lastName: action.data.user.lastName
         }
       }
-      debugger
     case types.SIGNUP_FAILURE:
     case types.LOGIN_FAILURE:
     case types.RESIEVE_AUTH_FAILURE:

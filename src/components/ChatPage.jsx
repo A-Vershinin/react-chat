@@ -41,11 +41,12 @@ class ChatPage extends Component {
   }
 
   render() {
-    const { chats, classes, logout, disabled = false, createChat, deleteChat, joinChat, leaveChat, editUser } = this.props;
+    const { chats, classes, logout, disabled = false, createChat, deleteChat, joinChat, leaveChat, editUser, activeUser } = this.props;
 
     return (
       <div className={classes.root}>
         <ChatHeader
+          activeUser={activeUser}
           logout={logout}
           disabled={disabled}
           activeChat={chats.active}
@@ -60,6 +61,7 @@ class ChatPage extends Component {
         />
         <ChatMessages
           messages={messages}
+          activeUser={activeUser}
           activeChat={chats.active}
           joinChat={joinChat}
         />

@@ -24,8 +24,8 @@ const styles = theme => ({
 class ChatHeader extends Component {
 
   render() {
-    const { classes, logout, disabled, activeUser = {}, activeChat, deleteChat, leaveChat, editUser } = this.props;
-    // console.log("leaveChat", leaveChat())
+    const { classes, logout, disabled, activeUser, activeChat, deleteChat, leaveChat, editUser } = this.props;
+
     return (
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar color="contrast">
@@ -46,7 +46,7 @@ class ChatHeader extends Component {
             </Fragment>
           ) : (
             <Typography variant="title" color="inherit" noWrap className={classes.appBarTitle}>
-              DogeCodes React Chat
+              React Chat
             </Typography>
           )}
           <UserMenu

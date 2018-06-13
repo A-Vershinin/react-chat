@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Avatar from './Avatar.jsx';
 
 const styles = theme => ({
   message: {
@@ -15,29 +16,39 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     backgroundColor: '#e6dcff'
   },
+  messageWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+  },
+  messageWrappperFromMe: {
+    justifyContent: 'flex-end',
+  },
 });
 
 const ChatMessageItem = props => {
-  const {
-    classes,
-    message,
-    isMessageFromMe,
-    userAvatar
-  } = props;
+  const { classes, activeUser, sender, content } = props;
+
+  const isMessageFromMe = sender === 'me';
+  // const isMessageFromMe = sender._id === activeUser._id;
+  const userAvatar = <Avatar colorFrom={sender}>{sender}</Avatar>;
 
   return (
-    <Fragment>
+    <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
       {!isMessageFromMe && userAvatar}
+
       <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
         <Typography variant="caption">
-          {message.sender}
+          {sender}
         </Typography>
         <Typography variant="body1">
-          {message.content}
+          {content}
         </Typography>
       </Paper>
+
       {isMessageFromMe && userAvatar}
-    </Fragment>
+    </div>
   )
 }
 

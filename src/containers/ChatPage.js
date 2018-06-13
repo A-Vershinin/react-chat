@@ -5,6 +5,7 @@ import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat, createChat, dele
 import { logoutAction as logout } from '../actions/auth';
 import { editUser } from '../actions/users';
 import * as fromChats from '../reducers/chats';
+import * as fromState from '../reducers';
 
 
 function mapStateToProps(state) {
@@ -15,6 +16,12 @@ function mapStateToProps(state) {
        active: activeChat,
        all: fromChats.getByIds(state.chats, state.chats.allIds),
        my: fromChats.getByIds(state.chats, state.chats.myIds),
+     },
+     activeUser: {
+        ...state.auth.user,
+        isMember: fromState.isMember(state, activeChat),
+        isCreator: fromState.isCreator(state, activeChat),
+        isChatMember: fromState.isChatMember(state, activeChat)
      },
   }
 };
