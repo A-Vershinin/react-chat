@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Avatar from './Avatar.jsx';
 import senderName from '../utils/sender-name';
 import randomColor from '../utils/color-from';
+import moment from 'moment';
 
 const styles = theme => ({
   message: {
@@ -27,10 +28,17 @@ const styles = theme => ({
   messageWrappperFromMe: {
     justifyContent: 'flex-end',
   },
+  statusMessage: {
+    width: '100%',
+    textAlign: 'center',
+  },
+  statusMessageUser: {
+    display: 'inline',
+  }
 });
 
 const ChatMessageItem = props => {
-  const { classes, activeUser, sender, content } = props;
+  const { classes, activeUser, sender, content, createdAt, statusMessage } = props;
 
   const displayedName = senderName(sender);
   const isMessageFromMe = sender._id === activeUser._id;
@@ -40,6 +48,22 @@ const ChatMessageItem = props => {
       {sender.username}
     </Avatar>
   );
+
+  if (statusMessage) {
+    return (
+      <div className={classes.messageWrapper}>
+        <Typography className={classes.statusMessage}>
+          <Typography variant="caption" style={{ color: randomColor(sender._id)}} className={classes.statusMessageUser}>
+            {displayedName}
+          </Typography>
+          {content}
+          <Typography variant="caption" component="span">
+            {moment(createdAt).fromNow()}
+          </Typography>
+        </Typography>
+      </div>
+    )
+  }
 
   return (
     <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
@@ -51,6 +75,9 @@ const ChatMessageItem = props => {
         </Typography>
         <Typography variant="body1">
           {content}
+        </Typography>
+        <Typography variant="caption" className={classes.time}>
+          {moment(createdAt).fromNow()}
         </Typography>
       </Paper>
 

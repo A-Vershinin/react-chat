@@ -108,6 +108,7 @@ export function createChat(title) {
           payload: { chat },
         });
 
+        dispatch(fetchMyChats());
         dispatch(redirect(`/chat/${chat._id}`));
         return chat;
       })

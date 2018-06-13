@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from './Avatar.jsx';
 import ChatMessageItem from './ChatMessageItem.jsx';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -12,7 +10,7 @@ const styles = theme => ({
     overflowX: 'scroll',
     height: '100%',
     width: '100%',
-    paddingTop: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit * 8,
     paddingBottom: '120px',
   },
   paper: {
