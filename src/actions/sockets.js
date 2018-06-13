@@ -2,7 +2,7 @@ import * as types from '../constans/sockets';
 import SocketIOClient from 'socket.io-client';
 import { redirect } from './services';
 
-export const missingSocketConnecton() {
+export function missingSocketConnecton() {
   return { type: types.SOCKETS_CONNECTION_MISSING }
 }
 
