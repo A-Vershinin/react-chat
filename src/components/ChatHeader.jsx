@@ -31,7 +31,7 @@ class ChatHeader extends Component {
         <Toolbar color="contrast">
           {activeChat ? (
             <Fragment>
-              <Avatar colorFrom={activeChat._id}>
+              <Avatar colorFrom={activeChat.title}>
                 {activeChat.title}
               </Avatar>
               <Typography variant="title" className={classes.appBarTitle}>
