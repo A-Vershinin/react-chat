@@ -41,7 +41,7 @@ class ChatPage extends Component {
   }
 
   render() {
-    const { chats, classes, logout, disabled = false, createChat, deleteChat, joinChat, leaveChat } = this.props;
+    const { chats, classes, logout, disabled = false, createChat, deleteChat, joinChat, leaveChat, editUser } = this.props;
 
     return (
       <div className={classes.root}>
@@ -51,6 +51,7 @@ class ChatPage extends Component {
           activeChat={chats.active}
           deleteChat={deleteChat}
           leaveChat={leaveChat}
+          editUser={editUser}
         />
         <Sidebar
           chats={chats}

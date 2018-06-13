@@ -28,7 +28,11 @@ class ChatMenu extends Component {
   }
   render() {
     const { anchorEl } = this.state;
-    const { disabled } = this.props;
+    const { disabled, activeUser } = this.props;
+
+    // if (!activeUser.isChatMember) {
+    //   return null;
+    // }
 
     return (
       <Fragment>
@@ -50,7 +54,9 @@ class ChatMenu extends Component {
       </Fragment>
     );
   }
-
 }
 
 export default ChatMenu;
+
+// activeUser.isMember && 
+// activeUser.isCreator &&

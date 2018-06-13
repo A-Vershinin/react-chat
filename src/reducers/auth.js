@@ -31,9 +31,21 @@ export function authReducer(state = initialState, action) {
         user: null,
         token: '',
       }
+    case types.EDIT_USER_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          username: action.data.user.username,
+          firstName: action.data.user.firstName,
+          lastName: action.data.user.lastName
+        }
+      }
+      debugger
     case types.SIGNUP_FAILURE:
     case types.LOGIN_FAILURE:
     case types.RESIEVE_AUTH_FAILURE:
+    case types.EDIT_USER_FAILURE:
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import ChatPage from '../components/ChatPage.jsx';
 import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat, createChat, deleteChat, joinChat, leaveChat } from '../actions/chats';
 import { logoutAction as logout } from '../actions/auth';
+import { editUser } from '../actions/users';
 import * as fromChats from '../reducers/chats';
 
 
@@ -28,6 +29,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   deleteChat,
   joinChat,
   leaveChat,
+  editUser,
 }, dispatch);
 
 
