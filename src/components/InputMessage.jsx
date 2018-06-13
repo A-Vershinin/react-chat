@@ -34,7 +34,7 @@ class InputMessage extends Component {
     const { value } = this.state;
 
     if (event.key === 'Enter' && value) {
-
+      this.props.onSendMessage(value);
       this.setState({ value: '' });
     }
   }

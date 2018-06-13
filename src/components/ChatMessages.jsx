@@ -39,7 +39,7 @@ class ChatMessages extends Component {
   }
 
   render() {
-    const { classes, messages, activeChat, joinChat, activeUser } = this.props;
+    const { classes, messages, activeChat, joinChat, activeUser, sendMessage  } = this.props;
 
     return (
       <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
@@ -48,6 +48,7 @@ class ChatMessages extends Component {
           activeUser={activeUser}
         />
         {activeChat && <InputMessage
+          onSendMessage={(content) => sendMessage(activeChat._id, content)}
           showJoinButton={!activeUser.isChatMember}
           onJoinButtonClick={() => joinChat(activeChat._id)}
           activeUser={activeUser}

@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Avatar from './Avatar.jsx';
+import senderName from '../utils/sender-name';
+import randomColor from '../utils/color-from';
 
 const styles = theme => ({
   message: {
@@ -30,17 +32,22 @@ const styles = theme => ({
 const ChatMessageItem = props => {
   const { classes, activeUser, sender, content } = props;
 
-  const isMessageFromMe = sender === 'me';
-  // const isMessageFromMe = sender._id === activeUser._id;
-  const userAvatar = <Avatar colorFrom={sender}>{sender}</Avatar>;
+  const displayedName = senderName(sender);
+  const isMessageFromMe = sender._id === activeUser._id;
+
+  const userAvatar = (
+    <Avatar colorFrom={sender._id}>
+      {sender.username}
+    </Avatar>
+  );
 
   return (
     <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
       {!isMessageFromMe && userAvatar}
 
       <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
-        <Typography variant="caption">
-          {sender}
+        <Typography variant="caption" style={{ color: randomColor(sender._id)}}>
+          {displayedName}
         </Typography>
         <Typography variant="body1">
           {content}
