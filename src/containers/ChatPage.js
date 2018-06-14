@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ChatPage from '../components/ChatPage.jsx';
-import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat, createChat, deleteChat, joinChat, leaveChat } from '../actions/chats';
+import {
+  fetchMyChats, fetchAllChats, fetchChat,
+  setActiveChat, createChat, deleteChat,
+  joinChat, leaveChat,
+} from '../actions/chats';
 import { logoutAction as logout } from '../actions/auth';
 import { editUser } from '../actions/users';
 import { sendMessage, mountChat, unmountChat, socketsConnect } from '../actions/sockets';
