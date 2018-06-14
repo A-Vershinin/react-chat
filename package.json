@@ -8,7 +8,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject",
-    "lint": "eslint 'src/**/*.js'",
+    "lint": "eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier-eslint --write '**/*.{js,jsx,json}'",
     "editorconfig": "editorconfig-cli",
@@ -20,6 +20,7 @@
     "@material-ui/icons": "^1.1.0",
     "classnames": "^2.2.5",
     "editorconfig-tools": "^0.1.1",
+    "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.22.2",
     "prop-types": "^15.6.1",
@@ -38,6 +39,7 @@
     "typeface-roboto": "0.0.54"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",

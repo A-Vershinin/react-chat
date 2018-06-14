@@ -23,44 +23,41 @@ const styles = theme => ({
   },
 });
 
-
 class Sidebar extends Component {
   state = {
-     activeTab: 0,
-     searchValue: '',
-   };
+    activeTab: 0,
+    searchValue: '',
+  };
 
-   handleSearchChange = (event) => {
+  handleSearchChange = (event) => {
     this.setState({
       searchValue: event.target.value,
     });
-  }
+  };
 
-   handleTabChange = (event, value) => {
-     this.setState({
-       activeTab: value,
-     })
-   }
+  handleTabChange = (event, value) => {
+    this.setState({
+      activeTab: value,
+    });
+  };
 
-   filterChats = (chats) => {
+  filterChats = (chats) => {
     const { searchValue } = this.state;
 
     return chats
-      .filter(chat => chat.title
-        .toLowerCase()
-        .includes(searchValue.toLowerCase()))
-        .sort((one, two) =>
-        one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1
-      );
-    }
+      .filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
+      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+  };
 
   render() {
     const { searchValue, activeTab } = this.state;
-    const { classes, chats, createChat, isConnected } = this.props;
+    const {
+      classes, chats, createChat, isConnected,
+    } = this.props;
 
     return (
       <div>
-        <Drawer variant="permanent" classes={{paper: classes.drawerPaper}}>
+        <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.drawerHeader}>
             <TextField
               fullWidth
@@ -76,10 +73,7 @@ class Sidebar extends Component {
             chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
             activeChat={chats.active}
           />
-          <NewChatButton
-            disabled={!isConnected}
-            onCreateChat={createChat}
-          />
+          <NewChatButton disabled={!isConnected} onCreateChat={createChat} />
           <BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
             <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
             <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />

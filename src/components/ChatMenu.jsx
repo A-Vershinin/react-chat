@@ -20,12 +20,12 @@ class ChatMenu extends Component {
   handleLeaveClick = () => {
     this.props.onLeaveChat();
     this.handleClose();
-  }
+  };
 
   handleDeleteClick = () => {
     this.props.onDeleteChat();
     this.handleClose();
-  }
+  };
   render() {
     const { anchorEl } = this.state;
     const { disabled, activeUser } = this.props;
@@ -36,18 +36,16 @@ class ChatMenu extends Component {
 
     return (
       <Fragment>
-        <IconButton color="inherit" aria-owns={anchorEl ? 'simple-menu' : null}
-            aria-haspopup="true"
-            disabled={disabled}
-            onClick={this.handleClick}>
-            <MoreIcon />
-        </IconButton>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
+        <IconButton
+          color="inherit"
+          aria-owns={anchorEl ? 'simple-menu' : null}
+          aria-haspopup="true"
+          disabled={disabled}
+          onClick={this.handleClick}
         >
+          <MoreIcon />
+        </IconButton>
+        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
           {activeUser.isMember && <MenuItem onClick={this.handleLeaveClick}>Leave</MenuItem>}
           {activeUser.isCreator && <MenuItem onClick={this.handleDeleteClick}>Delete</MenuItem>}
         </Menu>

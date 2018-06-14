@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   signUpButton: {
     marginTop: theme.spacing.unit * 2,
-  }
-})
+  },
+});
 
 class LoginForm extends React.Component {
   state = {
@@ -19,13 +19,13 @@ class LoginForm extends React.Component {
       value: '',
       isValid: true,
     },
-  }
+  };
 
   handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
 
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       [name]: {
         ...prevState[name],
         value,
@@ -40,32 +40,43 @@ class LoginForm extends React.Component {
     this.props.onSubmit(username.value, password.value);
   };
 
-  render () {
+  render() {
     const { classes } = this.props;
     const { username, password } = this.state;
 
     return (
       <form onSubmit={this.handleSubmitForm}>
-         <TextField required fullWidth label="Username"
-          placeholder="Type your username ..." type="text" name="username"
-          margin="normal" autoComplete="username"
+        <TextField
+          required
+          fullWidth
+          label="Username"
+          placeholder="Type your username ..."
+          type="text"
+          name="username"
+          margin="normal"
+          autoComplete="username"
           value={username.value}
           onChange={this.handleInputChange}
           error={!username.isValid}
         />
-        <TextField required fullWidth label="Password"
-          placeholder="Type your password ..." type="password"
-          name="password" margin="normal" autoComplete="current-password"
+        <TextField
+          required
+          fullWidth
+          label="Password"
+          placeholder="Type your password ..."
+          type="password"
+          name="password"
+          margin="normal"
+          autoComplete="current-password"
           value={password.value}
           onChange={this.handleInputChange}
           error={!password.isValid}
         />
-        <Button fullWidth variant="raised" type="submit"
-          color="primary" className={classes.signUpButton}>
+        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.signUpButton}>
           Login
         </Button>
       </form>
     );
-  };
+  }
 }
 export default withStyles(styles)(LoginForm);

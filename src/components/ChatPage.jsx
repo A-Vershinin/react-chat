@@ -19,9 +19,10 @@ const styles = theme => ({
 });
 
 class ChatPage extends Component {
-
   componentDidMount() {
-    const { match, fetchAllChats, fetchMyChats, setActiveChat, socketsConnect, mountChat } = this.props;
+    const {
+      match, fetchAllChats, fetchMyChats, setActiveChat, socketsConnect, mountChat,
+    } = this.props;
 
     Promise.all([fetchAllChats(), fetchMyChats()])
       .then(() => {
@@ -34,11 +35,16 @@ class ChatPage extends Component {
           setActiveChat(chatId);
           mountChat(chatId);
         }
-    });
+      });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { match: { params }, setActiveChat, unmountChat, mountChat } = this.props;
+    const {
+      match: { params },
+      setActiveChat,
+      unmountChat,
+      mountChat,
+    } = this.props;
     const { params: nextParams } = nextProps.match;
 
     // If we change route, then fetch messages from chat by chatID
@@ -52,11 +58,18 @@ class ChatPage extends Component {
   render() {
     const {
       classes,
-      chats, logout,
-      disabled = false, isConnected,
-      createChat, deleteChat, joinChat, leaveChat,
-      editUser, activeUser,
-      messages, sendMessage, error,
+      chats,
+      logout,
+      isConnected,
+      createChat,
+      deleteChat,
+      joinChat,
+      leaveChat,
+      editUser,
+      activeUser,
+      messages,
+      sendMessage,
+      error,
     } = this.props;
 
     return (
@@ -70,12 +83,7 @@ class ChatPage extends Component {
           leaveChat={leaveChat}
           editUser={editUser}
         />
-        <Sidebar
-          chats={chats}
-          isConnected={isConnected}
-          disabled={disabled}
-          createChat={createChat}
-        />
+        <Sidebar chats={chats} isConnected={isConnected} createChat={createChat} />
         <ChatMessages
           messages={messages}
           sendMessage={sendMessage}
@@ -83,7 +91,6 @@ class ChatPage extends Component {
           activeChat={chats.active}
           joinChat={joinChat}
           isConnected={isConnected}
-          disabled={disabled}
         />
         <ErrorMessage error={error} />
       </div>

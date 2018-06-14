@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 import { combineReducers } from 'redux';
 import * as types from '../constans';
 
@@ -23,7 +24,7 @@ const activeId = (state = initialState.activeId, action) => {
     default:
       return state;
   }
-}
+};
 
 const allIds = (state = initialState.allIds, action) => {
   switch (action.type) {
@@ -38,7 +39,7 @@ const allIds = (state = initialState.allIds, action) => {
     default:
       return state;
   }
-}
+};
 
 const myIds = (state = initialState.myIds, action) => {
   switch (action.type) {
@@ -54,7 +55,7 @@ const myIds = (state = initialState.myIds, action) => {
     default:
       return state;
   }
-}
+};
 
 const byIds = (state = initialState.byIds, action) => {
   switch (action.type) {
@@ -62,36 +63,41 @@ const byIds = (state = initialState.byIds, action) => {
     case types.FETCH_MY_CHATS_SUCCESS:
       return {
         ...state,
-        ...action.payload.chats.reduce((ids, chat) => ({
-          ...ids,
-          [getChatId(chat)]: chat
-        }), {})
-      }
+        ...action.payload.chats.reduce(
+          (ids, chat) => ({
+            ...ids,
+            [getChatId(chat)]: chat,
+          }),
+          {},
+        ),
+      };
     case types.JOIN_CHAT_SUCCESS:
     case types.LEAVE_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS:
     case types.RECIEVE_NEW_CHAT:
       return {
         ...state,
-        [getChatId(action.payload.chat)]: action.payload.chat
+        [getChatId(action.payload.chat)]: action.payload.chat,
       };
     case types.DELETE_CHAT_SUCCESS:
-    case types.RECIEVE_DELETED_CHAT:
+    case types.RECIEVE_DELETED_CHAT: {
       const newState = { ...state };
       delete newState[getChatId(action.payload.chat)];
       return newState;
+    }
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   activeId,
   allIds,
   myIds,
-  byIds
+  byIds,
 });
 
+// eslint-disable-next-line
 export const getChatId = chat => chat._id;
 export const getById = (state, id) => state.byIds[id];
 export const getByIds = (state, ids) => ids.map(id => getById(state, id));

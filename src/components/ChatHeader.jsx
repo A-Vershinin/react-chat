@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,10 +7,11 @@ import UserMenu from './UserMenu.jsx';
 import ChatMenu from './ChatMenu.jsx';
 import Avatar from './Avatar.jsx';
 
+/* eslint no-underscore-dangle: 0 */
 const styles = theme => ({
   appBar: {
     position: 'fixed',
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
     flexGrow: 1,
     marginLeft: 320,
   },
@@ -21,45 +22,32 @@ const styles = theme => ({
   },
 });
 
-class ChatHeader extends Component {
-
-  render() {
-    const { classes, logout, activeUser, activeChat, deleteChat, leaveChat, editUser, isConnected } = this.props;
-
-    return (
-      <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar color="contrast">
-          {activeChat ? (
-            <Fragment>
-              <Avatar colorFrom={activeChat.title}>
-                {activeChat.title}
-              </Avatar>
-              <Typography variant="title" className={classes.appBarTitle}>
-                {activeChat.title}
-                <ChatMenu
-                  disabled={!isConnected}
-                  activeUser={activeUser}
-                  onDeleteChat={() => deleteChat(activeChat._id)}
-                  onLeaveChat={() => leaveChat(activeChat._id)}
-                />
-              </Typography>
-            </Fragment>
-          ) : (
-            <Typography variant="title" color="inherit" noWrap className={classes.appBarTitle}>
-              React Chat
-            </Typography>
-          )}
-          <UserMenu
-            disabled={!isConnected}
-            activeUser={activeUser}
-            onLogoutClick={logout}
-            onEditProfileClick={editUser}
-          />
-        </Toolbar>
-      </AppBar>
-    );
-  }
-}
-
+const ChatHeader = ({
+  classes, logout, activeUser, activeChat, deleteChat, leaveChat, editUser, isConnected,
+}) => (
+  <AppBar position="absolute" className={classes.appBar}>
+    <Toolbar color="contrast">
+      {activeChat ? (
+        <Fragment>
+          <Avatar colorFrom={activeChat.title}>{activeChat.title}</Avatar>
+          <Typography variant="title" className={classes.appBarTitle}>
+            {activeChat.title}
+            <ChatMenu
+              disabled={!isConnected}
+              activeUser={activeUser}
+              onDeleteChat={() => deleteChat(activeChat._id)}
+              onLeaveChat={() => leaveChat(activeChat._id)}
+            />
+          </Typography>
+        </Fragment>
+      ) : (
+        <Typography variant="title" color="inherit" noWrap className={classes.appBarTitle}>
+          React Chat
+        </Typography>
+      )}
+      <UserMenu disabled={!isConnected} activeUser={activeUser} onLogoutClick={logout} onEditProfileClick={editUser} />
+    </Toolbar>
+  </AppBar>
+);
 
 export default withStyles(styles)(ChatHeader);

@@ -2,9 +2,11 @@ export const FETCH_MY_CHATS_REQUEST = Symbol('chats/FETCH_MY_CHATS_REQUEST');
 export const FETCH_MY_CHATS_SUCCESS = Symbol('chats/FETCH_MY_CHATS_SUCCESS');
 export const FETCH_MY_CHATS_FAILURE = Symbol('chats/FETCH_MY_CHATS_FAILURE');
 
+/* eslint-disable camelcase */
 export const FETCH_All_CHATS_REQUEST = Symbol('chats/FETCH_All_CHATS_REQUEST');
 export const FETCH_All_CHATS_SUCCESS = Symbol('chats/FETCH_All_CHATS_SUCCESS');
 export const FETCH_All_CHATS_FAILURE = Symbol('chats/FETCH_All_CHATS_FAILURE');
+/* eslint-enabled camelcase */
 
 export const FETCH_CHAT_REQUEST = Symbol('chats/FETCH_CHAT_REQUEST');
 export const FETCH_CHAT_SUCCESS = Symbol('chats/FETCH_CHAT_SUCCESS');

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import ChatMessageList from './ChatMessageList.jsx';
-
 import InputMessage from './InputMessage.jsx';
 
-const styles = theme => ({
+/* eslint no-underscore-dangle: 0 */
+const styles = () => ({
   chatLayout: {
     display: 'flex',
     justifyContent: 'center',
@@ -17,7 +17,7 @@ const styles = theme => ({
 });
 
 class ChatMessages extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.refMessagesWrapper = React.createRef();
   }
@@ -39,21 +39,22 @@ class ChatMessages extends Component {
   }
 
   render() {
-    const { classes, messages, activeChat, joinChat, activeUser, sendMessage, isConnected  } = this.props;
+    const {
+      classes, messages, activeChat, joinChat, activeUser, sendMessage, isConnected,
+    } = this.props;
 
     return (
       <main className={classes.chatLayout} ref={this.refMessagesWrapper}>
-        <ChatMessageList
-          messages={messages}
-          activeUser={activeUser}
-        />
-        {activeChat && <InputMessage
-          onSendMessage={sendMessage}
-          disabled={!isConnected}
-          showJoinButton={!activeUser.isChatMember}
-          onJoinButtonClick={() => joinChat(activeChat._id)}
-          activeUser={activeUser}
-        />}
+        <ChatMessageList messages={messages} activeUser={activeUser} />
+        {activeChat && (
+          <InputMessage
+            onSendMessage={sendMessage}
+            disabled={!isConnected}
+            showJoinButton={!activeUser.isChatMember}
+            onJoinButtonClick={() => joinChat(activeChat._id)}
+            activeUser={activeUser}
+          />
+        )}
       </main>
     );
   }

@@ -14,19 +14,21 @@ export function fetchMyChats() {
 
     dispatch({
       type: types.FETCH_MY_CHATS_REQUEST,
-    })
+    });
 
     return callApi('chats/my', token)
-      .then(data => dispatch({
-        type: types.FETCH_MY_CHATS_SUCCESS,
-        payload: data,
-      }))
-      .catch(reason => dispatch({
-        type: types.FETCH_MY_CHATS_FAILURE,
-        payload: reason,
-      }))
+      .then(data =>
+        dispatch({
+          type: types.FETCH_MY_CHATS_SUCCESS,
+          payload: data,
+        }))
+      .catch(reason =>
+        dispatch({
+          type: types.FETCH_MY_CHATS_FAILURE,
+          payload: reason,
+        }));
   };
-};
+}
 
 export function fetchAllChats() {
   return (dispatch, getState) => {
@@ -40,19 +42,21 @@ export function fetchAllChats() {
 
     dispatch({
       type: types.FETCH_All_CHATS_REQUEST,
-    })
+    });
 
     return callApi('chats', token)
-      .then(data => dispatch({
-        type: types.FETCH_All_CHATS_SUCCESS,
-        payload: data,
-      }))
-      .catch(reason => dispatch({
-        type: types.FETCH_All_CHATS_FAILURE,
-        payload: reason,
-      }))
+      .then(data =>
+        dispatch({
+          type: types.FETCH_All_CHATS_SUCCESS,
+          payload: data,
+        }))
+      .catch(reason =>
+        dispatch({
+          type: types.FETCH_All_CHATS_FAILURE,
+          payload: reason,
+        }));
   };
-};
+}
 
 export function fetchChat(chatId) {
   return (dispatch, getState) => {
@@ -65,11 +69,11 @@ export function fetchChat(chatId) {
     }
 
     dispatch({
-      type: types.FETCH_CHAT_REQUEST
+      type: types.FETCH_CHAT_REQUEST,
     });
 
     return callApi(`chats/${chatId}`, token)
-      .then(data => {
+      .then((data) => {
         dispatch({
           type: types.FETCH_CHAT_SUCCESS,
           payload: data,
@@ -77,10 +81,10 @@ export function fetchChat(chatId) {
 
         return data;
       })
-      .catch(reason => {
+      .catch((reason) => {
         dispatch({
           type: types.FETCH_CHAT_FAILURE,
-          payload: reason
+          payload: reason,
         });
 
         dispatch(redirect('/chat'));
@@ -89,25 +93,24 @@ export function fetchChat(chatId) {
 }
 
 export function setActiveChat(chatId) {
-  return (dispatch) => {
-    return dispatch(fetchChat(chatId))
-      .then(data => {
-        if (!data) {
-          dispatch(redirect('/chat'));
+  return dispatch =>
+    dispatch(fetchChat(chatId)).then((data) => {
+      if (!data) {
+        dispatch(redirect('/chat'));
 
-          return dispatch({
-            type: types.UNSET_ACTIVE_CHAT,
-          });
-        }
-
-        dispatch({
-          type: types.SET_ACTIVE_CHAT,
-          payload: data,
+        return dispatch({
+          type: types.UNSET_ACTIVE_CHAT,
         });
+      }
 
-        return dispatch(redirect(`/chat/${data.chat._id}`));
+      dispatch({
+        type: types.SET_ACTIVE_CHAT,
+        payload: data,
       });
-  };
+
+      // eslint-disable-next-line
+      return dispatch(redirect(`/chat/${data.chat._id}`));
+    });
 }
 
 export function createChat(title) {
@@ -122,12 +125,17 @@ export function createChat(title) {
 
     dispatch({
       type: types.CREATE_CHAT_REQUEST,
-      payload: { title }
-    })
+      payload: { title },
+    });
 
-    return callApi('chats', token, { method: 'POST' }, {
-      data: { title }
-    })
+    return callApi(
+      'chats',
+      token,
+      { method: 'POST' },
+      {
+        data: { title },
+      },
+    )
       .then(({ chat }) => {
         dispatch({
           type: types.CREATE_CHAT_SUCCESS,
@@ -135,15 +143,16 @@ export function createChat(title) {
         });
 
         dispatch(fetchMyChats());
+        // eslint-disable-next-line
         dispatch(redirect(`/chat/${chat._id}`));
         return chat;
       })
-      .catch(reason => dispatch({
-        type: types.CREATE_CHAT_FAILURE,
-        payload: reason,
-      })
-    );
-  }
+      .catch(reason =>
+        dispatch({
+          type: types.CREATE_CHAT_FAILURE,
+          payload: reason,
+        }));
+  };
 }
 
 export function deleteChat(chatId) {
@@ -158,11 +167,11 @@ export function deleteChat(chatId) {
 
     dispatch({
       type: types.DELETE_CHAT_REQUEST,
-      payload: { chatId }
+      payload: { chatId },
     });
 
     return callApi(`chats/${chatId}`, token, { method: 'DELETE' })
-      .then(data => {
+      .then((data) => {
         dispatch({
           type: types.DELETE_CHAT_SUCCESS,
           payload: data,
@@ -175,11 +184,12 @@ export function deleteChat(chatId) {
 
         return data;
       })
-      .catch(reason => dispatch({
-        type: types.DELETE_CHAT_FAILURE,
-        payload: reason,
-      }));
-  }
+      .catch(reason =>
+        dispatch({
+          type: types.DELETE_CHAT_FAILURE,
+          payload: reason,
+        }));
+  };
 }
 
 export function joinChat(chatId) {
@@ -194,24 +204,25 @@ export function joinChat(chatId) {
 
     dispatch({
       type: types.JOIN_CHAT_REQUEST,
-      payload: { chatId }
+      payload: { chatId },
     });
 
     return callApi(`chats/${chatId}/join`, token)
       .then(({ chat }) => {
         dispatch({
           type: types.JOIN_CHAT_SUCCESS,
-          payload: { chat }
+          payload: { chat },
         });
 
+        // eslint-disable-next-line
         dispatch(redirect(`/chat/${chat._id}`));
-
         return chat;
       })
-      .catch(reason => dispatch({
-        type: types.JOIN_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.JOIN_CHAT_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -227,11 +238,11 @@ export function leaveChat(chatId) {
 
     dispatch({
       type: types.LEAVE_CHAT_REQUEST,
-      payload: { chatId }
+      payload: { chatId },
     });
 
     return callApi(`chats/${chatId}/leave`, token)
-      .then(data => {
+      .then((data) => {
         dispatch({
           type: types.LEAVE_CHAT_SUCCESS,
           payload: data,
@@ -245,9 +256,10 @@ export function leaveChat(chatId) {
 
         return data;
       })
-      .catch(reason => dispatch({
-        type: types.LEAVE_CHAT_FAILURE,
-        payload: reason,
-      }));
-  }
+      .catch(reason =>
+        dispatch({
+          type: types.LEAVE_CHAT_FAILURE,
+          payload: reason,
+        }));
+  };
 }

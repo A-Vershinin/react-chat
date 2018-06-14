@@ -22,8 +22,8 @@ const styles = theme => ({
   modal: {
     width: '30%',
     minWidth: '300px',
-    padding: theme.spacing.unit * 3
-  }
+    padding: theme.spacing.unit * 3,
+  },
 });
 
 class UserMenu extends Component {
@@ -40,7 +40,7 @@ class UserMenu extends Component {
       username: nextProps.activeUser.username,
       firstName: nextProps.activeUser.firstName,
       lastName: nextProps.activeUser.lastName,
-    })
+    });
   }
 
   handleClick = (event) => {
@@ -55,53 +55,55 @@ class UserMenu extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
   handleLogoutClick = () => {
     this.props.onLogoutClick();
     this.handleClose();
-  }
+  };
 
   toggleEditProfileModal = () => {
-     this.setState({ isModalOpen: !this.state.isModalOpen })
-     this.handleClose();
-   }
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+    this.handleClose();
+  };
 
-   handleSaveClick = () => {
-     this.props.onEditProfileClick({
-       username: this.state.username,
-       firstName: this.state.firstName,
-       lastName: this.state.lastName,
-     });
-     this.toggleEditProfileModal();
-   }
+  handleSaveClick = () => {
+    this.props.onEditProfileClick({
+      username: this.state.username,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+    });
+    this.toggleEditProfileModal();
+  };
 
   render() {
-    const { anchorEl, isModalOpen  } = this.state;
+    const { anchorEl, isModalOpen } = this.state;
     const { classes, disabled } = this.props;
 
     return (
       <Fragment>
         <div className={classes.userMenu}>
           <IconButton
-            color="inherit" aria-owns={anchorEl ? 'simple-menu' : null}
-            aria-haspopup="true" disabled={disabled} onClick={this.handleClick}>
+            color="inherit"
+            aria-owns={anchorEl ? 'simple-menu' : null}
+            aria-haspopup="true"
+            disabled={disabled}
+            onClick={this.handleClick}
+          >
             <AccountCircle />
           </IconButton>
-          <Menu id="menu-appbar"
+          <Menu
+            id="menu-appbar"
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
-            onClose={this.handleClose}>
+            onClose={this.handleClose}
+          >
             <MenuItem onClick={this.toggleEditProfileModal}>Edit Profile</MenuItem>
             <MenuItem onClick={this.handleLogoutClick}>Logout</MenuItem>
           </Menu>
-          <Modal
-            open={isModalOpen}
-            className={classes.modalWrapper}
-            onClose={this.toggleEditProfileModal}
-          >
+          <Modal open={isModalOpen} className={classes.modalWrapper} onClose={this.toggleEditProfileModal}>
             <Paper className={classes.modal}>
               <Typography variant="title" id="modal-title">
                 Edit profile
@@ -137,7 +139,9 @@ class UserMenu extends Component {
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
               />
-              <Button color="primary" onClick={this.handleSaveClick}>Save</Button>
+              <Button color="primary" onClick={this.handleSaveClick}>
+                Save
+              </Button>
               <Button onClick={this.toggleEditProfileModal}>Close</Button>
             </Paper>
           </Modal>

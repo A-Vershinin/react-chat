@@ -14,16 +14,16 @@ import ErrorMessage from './ErrorMessage.jsx';
 
 const styles = theme => ({
   paper: {
+    // eslint-disable-next-line
     marginTop: 64 + theme.spacing.unit * 3,
     width: 500,
   },
   tabContent: {
     padding: theme.spacing.unit * 3,
-  }
+  },
 });
 
-
-class WelcomePage  extends Component {
+class WelcomePage extends Component {
   state = {
     activeTab: 0,
   };
@@ -33,7 +33,9 @@ class WelcomePage  extends Component {
   };
 
   render() {
-    const { classes, login, signup, isAuthenticated, error } = this.props;
+    const {
+      classes, login, signup, isAuthenticated, error,
+    } = this.props;
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
@@ -51,26 +53,24 @@ class WelcomePage  extends Component {
         </AppBar>
         <Grid container justify="center">
           <Grid item>
-           <Paper className={classes.paper}>
-            <AppBar position="static" color="default">
-             <Tabs value={activeTab} fullWidth
-              onChange={this.handleTabChange}>
-                <Tab label="Login" />
-                <Tab label="Sign Up" />
-             </Tabs>
-            </AppBar>
-            <div className={classes.tabContent}>
-              {activeTab === 0 && <LoginForm  onSubmit={login} />}
-              {activeTab === 1 && <SignUpForm  onSubmit={signup} />}
-            </div>
-           </Paper>
+            <Paper className={classes.paper}>
+              <AppBar position="static" color="default">
+                <Tabs value={activeTab} fullWidth onChange={this.handleTabChange}>
+                  <Tab label="Login" />
+                  <Tab label="Sign Up" />
+                </Tabs>
+              </AppBar>
+              <div className={classes.tabContent}>
+                {activeTab === 0 && <LoginForm onSubmit={login} />}
+                {activeTab === 1 && <SignUpForm onSubmit={signup} />}
+              </div>
+            </Paper>
           </Grid>
         </Grid>
         <ErrorMessage error={error} />
       </Fragment>
     );
   }
-
 }
 
 export default withStyles(styles)(WelcomePage);
