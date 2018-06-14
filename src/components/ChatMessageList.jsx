@@ -39,7 +39,9 @@ const ChatMessageList = ({ classes, match, messages, activeUser }) => {
   return messages && messages.length ? (
     <div className={classes.messagesWrapper}>
       {messages &&
-        messages.map((message, index) => <ChatMessageItem key={index} activeUser={activeUser} {...message} />)}
+        messages.map((message, index) => {
+          <ChatMessageItem key={message.chatId} activeUser={activeUser} {...message} />;
+        })}
     </div>
   ) : (
     <Typography variant="display1">There is no messages yet...</Typography>

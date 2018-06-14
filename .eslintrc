@@ -9,5 +9,6 @@
     "max-len": [2, 120],
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
+    "import/extensions": ["js", "jsx"],
   }
 }
