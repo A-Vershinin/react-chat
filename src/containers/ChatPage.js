@@ -13,19 +13,20 @@ function mapStateToProps(state) {
   const activeChat = fromChats.getById(state.chats, state.chats.activeId);
 
   return {
-     isAuthenticated: state.auth.isAuthenticated,
-	   chats: {
-       active: activeChat,
-       all: fromChats.getByIds(state.chats, state.chats.allIds),
-       my: fromChats.getByIds(state.chats, state.chats.myIds),
-     },
-     activeUser: {
-        ...state.auth.user,
-        isMember: fromState.isMember(state, activeChat),
-        isCreator: fromState.isCreator(state, activeChat),
-        isChatMember: fromState.isChatMember(state, activeChat)
-     },
-     messages: state.messages,
+    isAuthenticated: state.auth.isAuthenticated,
+    chats: {
+      active: activeChat,
+      all: fromChats.getByIds(state.chats, state.chats.allIds),
+      my: fromChats.getByIds(state.chats, state.chats.myIds),
+    },
+    activeUser: {
+      ...state.auth.user,
+      isMember: fromState.isMember(state, activeChat),
+      isCreator: fromState.isCreator(state, activeChat),
+      isChatMember: fromState.isChatMember(state, activeChat),
+    },
+    messages: state.messages,
+    error: state.services.errors.chat,
   }
 };
 

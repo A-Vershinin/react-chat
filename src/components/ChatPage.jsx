@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import ChatMessages from './ChatMessages.jsx';
+import ErrorMessage from './ErrorMessage.jsx';
 
 // import { messages } from '../mock-data.json';
 
@@ -55,7 +56,7 @@ class ChatPage extends Component {
       disabled = false,
       createChat, deleteChat, joinChat, leaveChat,
       editUser, activeUser,
-      messages, sendMessage,
+      messages, sendMessage, error,
     } = this.props;
 
     return (
@@ -81,6 +82,7 @@ class ChatPage extends Component {
           activeChat={chats.active}
           joinChat={joinChat}
         />
+        <ErrorMessage error={error} />
       </div>
     );
   }
