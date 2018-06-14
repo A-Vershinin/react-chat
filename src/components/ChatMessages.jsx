@@ -48,7 +48,7 @@ class ChatMessages extends Component {
           activeUser={activeUser}
         />
         {activeChat && <InputMessage
-          onSendMessage={(content) => sendMessage(activeChat._id, content)}
+          onSendMessage={sendMessage}
           showJoinButton={!activeUser.isChatMember}
           onJoinButtonClick={() => joinChat(activeChat._id)}
           activeUser={activeUser}

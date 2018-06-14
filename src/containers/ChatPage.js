@@ -4,7 +4,8 @@ import ChatPage from '../components/ChatPage.jsx';
 import { fetchMyChats, fetchAllChats, fetchChat, setActiveChat, createChat, deleteChat, joinChat, leaveChat } from '../actions/chats';
 import { logoutAction as logout } from '../actions/auth';
 import { editUser } from '../actions/users';
-import { sendMessage } from '../actions/messages';
+// import { sendMessage } from '../actions/messages';
+import { sendMessage, mountChat, unmountChat, socketsConnect } from '../actions/sockets';
 import * as fromChats from '../reducers/chats';
 import * as fromState from '../reducers';
 
@@ -41,6 +42,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   leaveChat,
   editUser,
   sendMessage,
+  mountChat,
+  unmountChat,
+  socketsConnect
 }, dispatch);
 
 

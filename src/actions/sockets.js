@@ -14,7 +14,7 @@ export function socketsConnect() {
 
     dispatch({ type: types.SOCKETS_CONNECTION_REQUEST });
 
-    socket = SocketIOClient('ws://localhost:3000/', {
+    socket = SocketIOClient('ws://localhost:8000/', {
       query: { token }
     });
 
@@ -22,16 +22,16 @@ export function socketsConnect() {
       dispatch({ type: types.SOCKETS_CONNECTION_SUCCESS });
     });
 
-    socket.error('error', () => {
+    socket.on('error', () => {
       dispatch({ type: types.SOCKETS_CONNECTION_FAILURE });
     });
 
-    socket.error('connect_error', () => {
+    socket.on('connect_error', () => {
       dispatch({ type: types.SOCKETS_CONNECTION_FAILURE });
     });
 
     socket.on('new-message', (message) => {
-      dispatch({ type: types.RECIEVE_MESSAGE,payload: message });
+      dispatch({ type: types.RECIEVE_MESSAGE, payload: message });
     });
 
     socket.on('new-chat', ({ chat }) => {
@@ -56,7 +56,7 @@ export function socketsConnect() {
   }
 }
 
-export function sendMessageConnect(content) {
+export function sendMessage(content) {
   return (dispatch, getState) => {
     const { activeId } = getState().chats;
 
