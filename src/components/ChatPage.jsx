@@ -53,7 +53,7 @@ class ChatPage extends Component {
     const {
       classes,
       chats, logout,
-      disabled = false,
+      disabled = false, isConnected,
       createChat, deleteChat, joinChat, leaveChat,
       editUser, activeUser,
       messages, sendMessage, error,
@@ -64,7 +64,7 @@ class ChatPage extends Component {
         <ChatHeader
           activeUser={activeUser}
           logout={logout}
-          disabled={disabled}
+          isConnected={isConnected}
           activeChat={chats.active}
           deleteChat={deleteChat}
           leaveChat={leaveChat}
@@ -72,6 +72,7 @@ class ChatPage extends Component {
         />
         <Sidebar
           chats={chats}
+          isConnected={isConnected}
           disabled={disabled}
           createChat={createChat}
         />
@@ -81,6 +82,8 @@ class ChatPage extends Component {
           activeUser={activeUser}
           activeChat={chats.active}
           joinChat={joinChat}
+          isConnected={isConnected}
+          disabled={disabled}
         />
         <ErrorMessage error={error} />
       </div>

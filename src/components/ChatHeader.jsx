@@ -24,7 +24,7 @@ const styles = theme => ({
 class ChatHeader extends Component {
 
   render() {
-    const { classes, logout, disabled, activeUser, activeChat, deleteChat, leaveChat, editUser } = this.props;
+    const { classes, logout, activeUser, activeChat, deleteChat, leaveChat, editUser, isConnected } = this.props;
 
     return (
       <AppBar position="absolute" className={classes.appBar}>
@@ -37,7 +37,7 @@ class ChatHeader extends Component {
               <Typography variant="title" className={classes.appBarTitle}>
                 {activeChat.title}
                 <ChatMenu
-                  disabled={disabled}
+                  disabled={!isConnected}
                   activeUser={activeUser}
                   onDeleteChat={() => deleteChat(activeChat._id)}
                   onLeaveChat={() => leaveChat(activeChat._id)}
@@ -50,7 +50,7 @@ class ChatHeader extends Component {
             </Typography>
           )}
           <UserMenu
-            disabled={disabled}
+            disabled={!isConnected}
             activeUser={activeUser}
             onLogoutClick={logout}
             onEditProfileClick={editUser}

@@ -3,7 +3,7 @@ import SocketIOClient from 'socket.io-client';
 import { redirect } from './services';
 
 export function missingSocketConnecton() {
-  return { type: types.SOCKETS_CONNECTION_MISSING }
+  return { type: types.SOCKETS_CONNECTION_MISSING, pyaload: new Error('Missing connection!') }
 }
 
 let socket = null;
@@ -28,12 +28,18 @@ export function socketsConnect() {
       dispatch({ type: types.SOCKETS_CONNECTION_SUCCESS });
     });
 
-    socket.on('error', () => {
-      dispatch({ type: types.SOCKETS_CONNECTION_FAILURE });
+    socket.on('error', (error) => {
+      dispatch({
+        type: types.SOCKETS_CONNECTION_FAILURE,
+        payload: new Error(`Connection ${error}`),
+      });
     });
 
     socket.on('connect_error', () => {
-      dispatch({ type: types.SOCKETS_CONNECTION_FAILURE });
+      dispatch({
+        type: types.SOCKETS_CONNECTION_FAILURE,
+        payload: new Error('We have lost a connection :('),
+      });
     });
 
     socket.on('new-message', (message) => {
