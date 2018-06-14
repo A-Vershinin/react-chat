@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import authReducer from './auth';
 import chatsReducer from './chats';
 import messagesReducer from './messages';
+import servicesReducer from './services.js';
 
 const reducer = combineReducers({
   auth: authReducer,
   chats: chatsReducer,
   messages: messagesReducer,
+  services: servicesReducer,
 });
 
 export const getActiveUser = (state) => state.auth.user;

@@ -1,5 +1,5 @@
-import * as types from '../constans/index';
 import { combineReducers } from 'redux';
+import * as types from '../constans';
 
 const initialState = {
   activeId: null,
@@ -18,6 +18,8 @@ const activeId = (state = initialState.activeId, action) => {
       return null;
     case types.DELETE_CHAT_SUCCESS:
       return null;
+    case types.RECIEVE_DELETED_CHAT:
+      return state === getChatId(action.payload.chat) ? null : activeId;
     default:
       return state;
   }
@@ -28,10 +30,9 @@ const allIds = (state = initialState.allIds, action) => {
     case types.FETCH_All_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
     case types.CREATE_CHAT_SUCCESS:
-      return [
-        ...state,
-        getChatId(action.payload.chat)
-      ];
+    case types.RECIEVE_NEW_CHAT:
+      return [...state, getChatId(action.payload.chat)];
+    case types.RECIEVE_DELETED_CHAT:
     case types.DELETE_CHAT_SUCCESS:
       return state.filter(chatId => chatId !== getChatId(action.payload.chat));
     default:
@@ -44,6 +45,10 @@ const myIds = (state = initialState.myIds, action) => {
     case types.FETCH_MY_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
     case types.CREATE_CHAT_SUCCESS:
+    case types.JOIN_CHAT_SUCCESS:
+      return [...state, getChatId(action.payload.chat)];
+    case types.LEAVE_CHAT_SUCCESS:
+    case types.RECIEVE_DELETED_CHAT:
     case types.DELETE_CHAT_SUCCESS:
       return state.filter(chatId => chatId !== getChatId(action.payload.chat));
     default:
@@ -62,12 +67,16 @@ const byIds = (state = initialState.byIds, action) => {
           [getChatId(chat)]: chat
         }), {})
       }
+    case types.JOIN_CHAT_SUCCESS:
+    case types.LEAVE_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS:
+    case types.RECIEVE_NEW_CHAT:
       return {
         ...state,
         [getChatId(action.payload.chat)]: action.payload.chat
       };
     case types.DELETE_CHAT_SUCCESS:
+    case types.RECIEVE_DELETED_CHAT:
       const newState = { ...state };
       delete newState[getChatId(action.payload.chat)];
       return newState;

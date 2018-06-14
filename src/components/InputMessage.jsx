@@ -40,7 +40,7 @@ class InputMessage extends Component {
   }
 
   render() {
-    const { classes, onJoinButtonClick, showJoinButton } = this.props;
+    const { classes, onJoinButtonClick, showJoinButton, disabled } = this.props;
     return (
       <div className={classes.messageInputWrapper}>
         <Paper className={classes.messageInput} elevation={6}>
@@ -49,6 +49,7 @@ class InputMessage extends Component {
               fullWidth
               variant="raised"
               color="primary"
+              disabled={disabled}
               onClick={onJoinButtonClick}
             >
               Join
@@ -56,6 +57,7 @@ class InputMessage extends Component {
           ) : (
             <Input
               fullWidth placeholder="Type your message…"
+              disabled={disabled}
               value={this.state.value}
               onChange={this.handleValueChange}
               onKeyPress={this.handleKeyPress}

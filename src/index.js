@@ -1,16 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import 'typeface-roboto';
 import './index.css';
 import App from './components/App.jsx';
+import configureStore from './store';
 
+const store = configureStore();
 
 const node = document.getElementById('root');
 
-ReactDOM.render(<App />, node);
+const render = (Component) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Component />
+    </Provider>,
+    node
+  );
+}
+
+render(App);
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
-    ReactDOM.render(<App />, node)
+    render(App);
   })
 }

@@ -2,7 +2,13 @@ import * as types from '../constans/auth';
 import callApi from '../utils/call-api';
 
 export function signupAction(username, password) {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+
+    if (isFetching.signup) {
+      return Promise.resolve();
+    }
+
 		dispatch({
 			type: types.SIGNUP_REQUEST,
 		})
@@ -30,7 +36,13 @@ export function signupAction(username, password) {
 }
 
 export function loginAction(username, password) {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { isFetching } = getState().services;
+
+		if (isFetching.login) {
+			return Promise.resolve();
+		}
+
 		dispatch({
 			type: types.LOGIN_REQUEST,
 		})
@@ -57,7 +69,13 @@ export function loginAction(username, password) {
 }
 
 export function logoutAction() {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+
+    if (isFetching.logout) {
+      return Promise.resolve();
+    }
+
 		dispatch({
 			type: types.LOGOUT_REQUEST,
 		})
@@ -83,7 +101,13 @@ export function logoutAction() {
 
 export function resieveAuth() {
 	return (dispatch, getState) => {
-		const { token } = getState().auth;
+		const state = getState();
+		const { token } = state.auth;
+		const { isFetching } = state.services;
+
+		if (isFetching.resieveAuth) {
+			return Promise.resolve();
+		}
 
 		if (!token) {
 			dispatch({

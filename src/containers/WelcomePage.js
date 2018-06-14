@@ -6,6 +6,7 @@ import { signupAction, loginAction } from '../actions';
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    error: state.services.errors.auth,
   }
 }
 
