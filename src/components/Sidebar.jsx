@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -24,6 +25,17 @@ const styles = theme => ({
 });
 
 class Sidebar extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    chats: PropTypes.shape({
+      active: PropTypes.object,
+      all: PropTypes.array.isRequired,
+      my: PropTypes.array.isRequired,
+    }).isRequired,
+    createChat: PropTypes.func.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+  };
+
   state = {
     activeTab: 0,
     searchValue: '',

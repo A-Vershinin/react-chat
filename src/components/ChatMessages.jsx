@@ -59,6 +59,7 @@ class ChatMessages extends Component {
   static defaultProps = {
     activeChat: null,
   };
+
   constructor(props) {
     super(props);
     this.refMessagesWrapper = React.createRef();

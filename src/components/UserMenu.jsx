@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -27,6 +28,13 @@ const styles = theme => ({
 });
 
 class UserMenu extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    onLogoutClick: PropTypes.func.isRequired,
+    onEditProfileClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     anchorEl: null,
     isModalOpen: false,
