@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders correctly 1`] = `
+<div
+  className="MuiAvatar-root-4 MuiAvatar-colorDefault-5"
+  style={
+    Object {
+      "backgroundColor": "#607d8b",
+    }
+  }
+>
+  Error in titleInitials
+</div>
+`;
+
+exports[`<Avatar /> renders correctly 1`] = `
+<div
+  className="MuiAvatar-root-4 MuiAvatar-colorDefault-5"
+  style={
+    Object {
+      "backgroundColor": "#ff5722",
+    }
+  }
+>
+  NS
+</div>
+`;
+
+exports[`<Avater /> renders correctly 1`] = `
+<div
+  className="MuiAvatar-root-4 MuiAvatar-colorDefault-5"
+  style={
+    Object {
+      "backgroundColor": "#ff5722",
+    }
+  }
+>
+  NS
+</div>
+`;
