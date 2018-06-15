@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NewChatButton /> renders correctly 1`] = `
+<button
+  className="MuiButtonBase-root-69 MuiButton-root-47 MuiButton-contained-56 MuiButton-fab-64 MuiButton-containedPrimary-57 MuiButton-raised-59 MuiButton-raisedPrimary-60 NewChatButton-newChatButton-44 some text a"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex="0"
+  type="button"
+>
+  <span
+    className="MuiButton-label-48"
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root-72"
+      color={undefined}
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <g>
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </g>
+    </svg>
+  </span>
+  <span
+    className="MuiTouchRipple-root-78"
+  />
+</button>
+`;
+
+exports[`<NewChatButton /> renders when NewChatButton disabled 1`] = `
+<button
+  className="MuiButtonBase-root-69 MuiButtonBase-disabled-70 MuiButton-root-47 MuiButton-contained-56 MuiButton-fab-64 MuiButton-containedPrimary-57 MuiButton-raised-59 MuiButton-raisedPrimary-60 MuiButton-disabled-63 NewChatButton-newChatButton-44 some text a"
+  disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex="-1"
+  type="button"
+>
+  <span
+    className="MuiButton-label-48"
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root-72"
+      color={undefined}
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <g>
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </g>
+    </svg>
+  </span>
+</button>
+`;
