@@ -81,7 +81,7 @@ describe('<ChatMessages />', () => {
   it('renders when isConnected false', () => {
     const tree = renderer
       .create(<MemoryRouter>
-          <ChatMessages {...mockProps} />
+          <ChatMessages {...mockProps} isConnected={false} />
               </MemoryRouter>)
       .toJSON();
     expect(tree).toMatchSnapshot();
