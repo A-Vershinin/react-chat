@@ -16,6 +16,8 @@ class ChatMenu extends Component {
       isCreator: PropTypes.bool.isRequired,
       isChatMember: PropTypes.bool.isRequired,
     }).isRequired,
+    onLeaveChat: PropTypes.func.isRequired,
+    onDeleteChat: PropTypes.func.isRequired,
   };
 
   state = {

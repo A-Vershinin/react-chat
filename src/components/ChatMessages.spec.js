@@ -3,40 +3,41 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import ChatList from './ChatItem.jsx';
+import ChatMessages from './ChatMessages.jsx';
 
-jest.mock('./ChatItem', () => () => 'ChatItem');
+jest.mock('./ChatMessageList', () => () => 'ChatMessageList');
+jest.mock('./InputMessage', () => () => 'InputMessage');
 
 const mockProps = {
   classes: {
-    activeItem: 'lorem lorem',
+    chatLayout: 'some text',
   },
-  chats: [
+  isConnected: true,
+  sendMessage: jest.fn(),
+  joinChat: jest.fn(),
+  messages: [
     {
-      createdAt: '2018-03-16T10:53:23.200Z',
-      creator: {
+      chatId: '12345',
+      content: 'some text',
+      sender: {
         firstName: 'firstName',
         lastName: 'lastName',
         username: 'username',
         _id: '12345',
       },
-      members: [
-        {
-          firstName: 'firstName',
-          lastName: 'lastName',
-          username: 'username',
-          _id: '12345',
-        },
-      ],
-      title: 'My Chat',
-      updatedAt: '2018-03-16T10:53:23.200Z',
+      createdAt: '2018-03-16T10:53:23.200Z',
     },
   ],
+  activeUser: {
+    isMember: true,
+    isCreator: true,
+    isChatMember: true,
+    firstName: 'firstName',
+    lastName: 'lastName',
+    username: 'username',
+  },
   activeChat: {
-    _id: '12345',
-    title: 'My Chat',
     createdAt: '2018-03-16T10:53:23.200Z',
-    updatedAt: '2018-03-16T10:53:23.200Z',
     creator: {
       firstName: 'firstName',
       lastName: 'lastName',
@@ -51,16 +52,17 @@ const mockProps = {
         _id: '12345',
       },
     ],
+    title: 'My Chat',
+    updatedAt: '2018-03-16T10:53:23.200Z',
   },
-  disabled: false,
 };
 
-describe('<ChatList />', () => {
+describe('<ChatMessages />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <MemoryRouter>
-        <ChatList {...mockProps} />
+        <ChatMessages {...mockProps} />
       </MemoryRouter>,
       div,
     );
@@ -70,19 +72,18 @@ describe('<ChatList />', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(<MemoryRouter>
-          <ChatList {...mockProps} />
+          <ChatMessages {...mockProps} />
               </MemoryRouter>)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders when ChatList disabled', () => {
+  it('renders when isConnected false', () => {
     const tree = renderer
       .create(<MemoryRouter>
-          <ChatList {...mockProps} disabled />
+          <ChatMessages {...mockProps} />
               </MemoryRouter>)
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatMessages /> renders correctly 1`] = `
+<main
+  className="ChatMessages-chatLayout-2 some text"
+>
+  ChatMessageList
+  InputMessage
+</main>
+`;
+
+exports[`<ChatMessages /> renders when isConnected false 1`] = `
+<main
+  className="ChatMessages-chatLayout-2 some text"
+>
+  ChatMessageList
+  InputMessage
+</main>
+`;
