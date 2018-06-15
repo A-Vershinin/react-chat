@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -49,5 +50,43 @@ const ChatHeader = ({
     </Toolbar>
   </AppBar>
 );
+
+ChatHeader.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  activeUser: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+    isMember: PropTypes.bool.isRequired,
+    isCreator: PropTypes.bool.isRequired,
+    isChatMember: PropTypes.bool.isRequired,
+  }).isRequired,
+  activeChat: PropTypes.shape({
+    createdAt: PropTypes.string.isRequired,
+    creator: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }).isRequired,
+    members: PropTypes.arrayOf(PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    })).isRequired,
+    title: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+  }),
+  logout: PropTypes.func.isRequired,
+  deleteChat: PropTypes.func.isRequired,
+  leaveChat: PropTypes.func.isRequired,
+  editUser: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+};
+
+ChatHeader.defaultProps = {
+  activeChat: null,
+};
 
 export default withStyles(styles)(ChatHeader);

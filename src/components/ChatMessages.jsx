@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import ChatMessageList from './ChatMessageList.jsx';
@@ -17,6 +18,47 @@ const styles = () => ({
 });
 
 class ChatMessages extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape({
+      chatId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      sender: PropTypes.object.isRequired,
+      createdAt: PropTypes.string.isRequired,
+    })).isRequired,
+    activeChat: PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      creator: PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
+      }).isRequired,
+      members: PropTypes.arrayOf(PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
+      })).isRequired,
+      title: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+    activeUser: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      username: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    joinChat: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    activeChat: null,
+  };
   constructor(props) {
     super(props);
     this.refMessagesWrapper = React.createRef();
