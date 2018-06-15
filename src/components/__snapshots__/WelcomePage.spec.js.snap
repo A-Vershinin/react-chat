@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WelcomePage /> renders correctly 1`] = `null`;
+
+exports[`<WelcomePage /> renders when user is isAuthenticated 1`] = `null`;

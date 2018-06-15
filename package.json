@@ -48,6 +48,7 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier-eslint --write '**/*.{js,jsx,json}'",
     "updateSnapshot": "jest --updateSnapshot",
+    "coverage": "npm test -- --coverage",
     "editorconfig": "editorconfig-cli",
     "editorconfigfix": "editorconfig-tools fix src",
     "precommit": "lint-staged"
