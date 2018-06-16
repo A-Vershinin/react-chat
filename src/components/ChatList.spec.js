@@ -9,7 +9,8 @@ jest.mock('./ChatItem', () => () => 'ChatItem');
 
 const mockProps = {
   classes: {
-    activeItem: 'lorem lorem',
+    chatsList: 'lorem lorem',
+    noChats: 'lorem lorem abc',
   },
   chats: [
     {
@@ -82,7 +83,6 @@ describe('<ChatList />', () => {
           <ChatList {...mockProps} disabled />
               </MemoryRouter>)
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

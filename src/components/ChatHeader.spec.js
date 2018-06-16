@@ -58,7 +58,6 @@ describe('<ChatHeader />', () => {
 
   it('renders without active chat', () => {
     const tree = renderer.create(<ChatHeader {...mockProps} activeChat={null} />).toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

@@ -43,7 +43,6 @@ describe('<UserMenu />', () => {
           <UserMenu {...mockProps} disabled />
               </MemoryRouter>)
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

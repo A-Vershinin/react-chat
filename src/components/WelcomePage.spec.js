@@ -47,7 +47,6 @@ describe('<WelcomePage />', () => {
           <Route path="/welcome" render={props => <WelcomePage {...mockProps} {...props} />} />
               </MemoryRouter>)
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

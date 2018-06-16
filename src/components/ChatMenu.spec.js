@@ -32,7 +32,6 @@ describe('<ChatMenu />', () => {
 
   it('renders when ChatMenu disabled', () => {
     const tree = renderer.create(<ChatMenu {...mockProps} disabled />).toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

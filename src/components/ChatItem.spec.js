@@ -57,7 +57,6 @@ describe('<ChatItem />', () => {
           <ChatItem {...mockProps} disabled />
               </MemoryRouter>)
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

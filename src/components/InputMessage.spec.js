@@ -52,7 +52,6 @@ describe('<InputMessage />', () => {
           <InputMessage {...mockProps} showJoinButton />
               </MemoryRouter>)
       .toJSON();
-
     expect(tree).toMatchSnapshot();
   });
 });

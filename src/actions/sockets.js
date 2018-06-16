@@ -2,6 +2,7 @@
 import SocketIOClient from 'socket.io-client';
 import { redirect } from './services';
 import * as types from '../constans/sockets';
+import config from '../config';
 
 export function missingSocketConnecton() {
   return { type: types.SOCKETS_CONNECTION_MISSING, pyaload: new Error('Missing connection!') };
@@ -21,7 +22,7 @@ export function socketsConnect() {
 
     dispatch({ type: types.SOCKETS_CONNECTION_REQUEST });
 
-    socket = SocketIOClient('ws://localhost:8000/', {
+    socket = SocketIOClient(config.SOCKETS_URI, {
       query: { token },
     });
 
