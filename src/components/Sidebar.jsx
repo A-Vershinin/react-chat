@@ -53,12 +53,11 @@ class Sidebar extends Component {
     });
   };
 
-  filterChats = (chats) => {
+  filterAndSortChats = (chats) => {
     const { searchValue } = this.state;
+    const sortFunc = (a, b) => ((a.title || '').toLowerCase() <= (b.title || '').toLowerCase() ? -1 : 1);
 
-    return chats
-      .filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
-      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+    return chats.filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase())).sort(sortFunc);
   };
 
   render() {
