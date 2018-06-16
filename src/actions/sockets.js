@@ -48,19 +48,20 @@ export function socketsConnect() {
       dispatch({ type: types.RECIEVE_MESSAGE, payload: message });
     });
 
-    socket.on('new-chat', ({ chat }) => {
+    socket.on('new-chat', (data) => {
       dispatch({
         type: types.RECIEVE_NEW_CHAT,
-        payload: chat,
+        payload: data,
       });
     });
 
-    socket.on('deleted-chat', ({ chat }) => {
+    socket.on('deleted-chat', (data) => {
       const { activeId } = getState().chats;
+      const { chat } = data;
 
       dispatch({
         type: types.RECIEVE_DELETED_CHAT,
-        payload: chat,
+        payload: data,
       });
 
       // eslint-disable-next-line
