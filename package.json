@@ -51,8 +51,7 @@
     "coverage": "npm test -- --coverage",
     "editorconfig": "editorconfig-cli",
     "editorconfigfix": "editorconfig-tools fix src",
-    "precommit": "lint-staged",
-    "prepush": "npm test"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "**/*.js": [
