@@ -53,12 +53,11 @@ class Sidebar extends Component {
     });
   };
 
-  filterChats = (chats) => {
+  filterAndSortChats = (chats) => {
     const { searchValue } = this.state;
+    const sortFunc = (a, b) => ((a.title || '').toLowerCase() <= (b.title || '').toLowerCase() ? -1 : 1);
 
-    return chats
-      .filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
-      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+    return chats.filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase())).sort(sortFunc);
   };
 
   render() {
@@ -82,7 +81,7 @@ class Sidebar extends Component {
           <Divider />
           <ChatList
             disabled={!isConnected}
-            chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
+            chats={this.filterAndSortChats(activeTab === 0 ? chats.my : chats.all)}
             activeChat={chats.active}
           />
           <NewChatButton disabled={!isConnected} onCreateChat={createChat} />
