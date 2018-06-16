@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
@@ -13,6 +14,7 @@ const styles = theme => ({
     position: 'absolute!important',
     left: 'auto',
     right: theme.spacing.unit * 3,
+    // eslint-disable-next-line
     bottom: theme.spacing.unit * 3 + 48,
   },
   modalWrapper: {
@@ -25,31 +27,37 @@ const styles = theme => ({
     width: '40%',
     minWidth: '400px',
     minHeight: '250px',
-    padding: theme.spacing.unit * 3
-  }
+    padding: theme.spacing.unit * 3,
+  },
 });
 
 class NewChatButton extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    onCreateChat: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     open: false,
     title: {
       value: '',
       isValid: true,
-    }
-  }
+    },
+  };
 
   toggleModal = () => {
-    this.setState({ open: !this.state.open })
-  }
+    this.setState({ open: !this.state.open });
+  };
 
   handleTitleChange = (event) => {
     this.setState({
       title: {
         value: event.target.value,
         isValid: true,
-      }
+      },
     });
-  }
+  };
 
   handleCreateChat = (event) => {
     event.preventDefault();
@@ -59,9 +67,9 @@ class NewChatButton extends Component {
       this.setState({
         title: {
           value: title.value,
-          isValid: false
-        }
-      })
+          isValid: false,
+        },
+      });
       return;
     }
 
@@ -70,10 +78,10 @@ class NewChatButton extends Component {
     this.setState({
       title: {
         value: '',
-        isValid: true
-      }
+        isValid: true,
+      },
     });
-  }
+  };
 
   render() {
     const { open, title } = this.state;
@@ -81,17 +89,16 @@ class NewChatButton extends Component {
 
     return (
       <Fragment>
-        <Button variant="fab" color="primary"
+        <Button
+          variant="fab"
+          color="primary"
           className={classes.newChatButton}
           disabled={disabled}
-          onClick={this.toggleModal}>
+          onClick={this.toggleModal}
+        >
           <AddIcon />
         </Button>
-        <Modal
-          open={open}
-          className={classes.modalWrapper}
-          onClose={this.toggleModal}
-        >
+        <Modal open={open} className={classes.modalWrapper} onClose={this.toggleModal}>
           <Paper className={classes.modal}>
             <Typography variant="title" id="modal-title">
               Create new chat
@@ -108,10 +115,7 @@ class NewChatButton extends Component {
               onChange={this.handleTitleChange}
               error={!title.isValid}
             />
-            <Button
-              color="primary"
-              onClick={this.handleCreateChat}
-            >
+            <Button color="primary" onClick={this.handleCreateChat}>
               Create
             </Button>
           </Paper>

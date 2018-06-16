@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatList /> renders correctly 1`] = `"ChatItem"`;
+
+exports[`<ChatList /> renders when ChatList disabled 1`] = `"ChatItem"`;

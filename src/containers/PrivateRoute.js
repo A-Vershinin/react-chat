@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { resieveAuth } from '../actions';
 
-class PrivateRoute extends Component {
-
+class PrivateRoute extends React.Component {
   componentDidMount() {
     this.props.resieveAuth();
   }
@@ -13,30 +12,36 @@ class PrivateRoute extends Component {
     const { component: Component, isAuthenticated, ...rest } = this.props;
 
     return (
-      <Route {...rest} render={props => (
-        isAuthenticated ? (
-          <Component { ...rest} />) : (
-          <Redirect to={
-            { pathname: "/welcome",
-            state: { from: props.location }
-          }} /> )
-      )} />
+      <Route
+        {...rest}
+        render={props =>
+          (isAuthenticated ? (
+            <Component {...rest} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/welcome',
+                state: { from: props.location },
+              }}
+            />
+          ))
+        }
+      />
     );
   }
 }
 
-
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-  }
-};
+  };
+}
 
 const mapDispatchToProps = dispatch => ({
-    resieveAuth: () => dispatch(resieveAuth()),
+  resieveAuth: () => dispatch(resieveAuth()),
 });
 
 export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(PrivateRoute));

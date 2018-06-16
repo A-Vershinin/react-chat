@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatMessageItem /> renders correctly 1`] = `
+<div
+  className="ChatMessageItem-messageWrapper-33 some text"
+>
+  <p
+    className="MuiTypography-root-37 MuiTypography-body1-46 ChatMessageItem-statusMessage-35 some text"
+  >
+    <span
+      className="MuiTypography-root-37 MuiTypography-caption-47 ChatMessageItem-statusMessageUser-36 some text"
+      style={
+        Object {
+          "color": "#ff5722",
+        }
+      }
+    >
+      firstName lastName
+    </span>
+    some content
+    <span
+      className="MuiTypography-root-37 MuiTypography-caption-47"
+    >
+      2 days ago
+    </span>
+  </p>
+</div>
+`;
+
+exports[`<ChatMessageItem /> renders when statusMessage false 1`] = `
+<div
+  className="ChatMessageItem-messageWrapper-33 some text"
+>
+  <p
+    className="MuiTypography-root-37 MuiTypography-body1-46 ChatMessageItem-statusMessage-35 some text"
+  >
+    <span
+      className="MuiTypography-root-37 MuiTypography-caption-47 ChatMessageItem-statusMessageUser-36 some text"
+      style={
+        Object {
+          "color": "#ff5722",
+        }
+      }
+    >
+      firstName lastName
+    </span>
+    some content
+    <span
+      className="MuiTypography-root-37 MuiTypography-caption-47"
+    >
+      2 days ago
+    </span>
+  </p>
+</div>
+`;

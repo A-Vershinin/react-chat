@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputMessage /> renders correctly 1`] = `
+<div
+  className="InputMessage-messageInputWrapper-43 some text"
+>
+  <div
+    className="MuiPaper-root-45 MuiPaper-elevation6-53 MuiPaper-rounded-46 InputMessage-messageInput-44 some text 2"
+  >
+    <div
+      className="MuiInput-root-72 MuiInput-fullWidth-79 MuiInput-underline-76"
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-80"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<InputMessage /> renders when chatItem disabled 1`] = `
+<div
+  className="InputMessage-messageInputWrapper-43 some text"
+>
+  <div
+    className="MuiPaper-root-45 MuiPaper-elevation6-53 MuiPaper-rounded-46 InputMessage-messageInput-44 some text 2"
+  >
+    <div
+      className="MuiInput-root-72 MuiInput-disabled-75 MuiInput-fullWidth-79 MuiInput-underline-76"
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-80 MuiInput-disabled-75"
+        defaultValue={undefined}
+        disabled={true}
+        id={undefined}
+        name={undefined}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<InputMessage /> renders when show joinButton 1`] = `
+<div
+  className="InputMessage-messageInputWrapper-43 some text"
+>
+  <div
+    className="MuiPaper-root-45 MuiPaper-elevation6-53 MuiPaper-rounded-46 InputMessage-messageInput-44 some text 2"
+  >
+    <button
+      className="MuiButtonBase-root-107 MuiButton-root-85 MuiButton-contained-94 MuiButton-containedPrimary-95 MuiButton-raised-97 MuiButton-raisedPrimary-98 MuiButton-fullWidth-106"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex="0"
+      type="button"
+    >
+      <span
+        className="MuiButton-label-86"
+      >
+        Join
+      </span>
+      <span
+        className="MuiTouchRipple-root-110"
+      />
+    </button>
+  </div>
+</div>
+`;

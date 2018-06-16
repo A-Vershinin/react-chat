@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> renders correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-62 MuiFormControl-marginNormal-63 MuiFormControl-fullWidth-65"
+  >
+    <label
+      className="MuiFormLabel-root-71 MuiInputLabel-root-66 MuiInputLabel-formControl-67 MuiInputLabel-animated-70"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Username
+      <span
+        className="MuiFormLabel-asterisk-75"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-76 MuiInput-fullWidth-83 MuiInput-formControl-77 MuiInput-underline-80"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="username"
+        autoFocus={undefined}
+        className="MuiInput-input-84"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="username"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your username ..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-62 MuiFormControl-marginNormal-63 MuiFormControl-fullWidth-65"
+  >
+    <label
+      className="MuiFormLabel-root-71 MuiInputLabel-root-66 MuiInputLabel-formControl-67 MuiInputLabel-animated-70"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Password
+      <span
+        className="MuiFormLabel-asterisk-75"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-76 MuiInput-fullWidth-83 MuiInput-formControl-77 MuiInput-underline-80"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="current-password"
+        autoFocus={undefined}
+        className="MuiInput-input-84 MuiInput-inputType-87"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your password ..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    aria-describedby={undefined}
+    className="MuiFormControl-root-62 MuiFormControl-marginNormal-63 MuiFormControl-fullWidth-65"
+  >
+    <label
+      className="MuiFormLabel-root-71 MuiInputLabel-root-66 MuiInputLabel-formControl-67 MuiInputLabel-animated-70"
+      data-shrink={false}
+      htmlFor={undefined}
+    >
+      Repeat password
+      <span
+        className="MuiFormLabel-asterisk-75"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInput-root-76 MuiInput-fullWidth-83 MuiInput-formControl-77 MuiInput-underline-80"
+    >
+      <input
+        aria-invalid={false}
+        aria-required={true}
+        autoComplete="new-password"
+        autoFocus={undefined}
+        className="MuiInput-input-84 MuiInput-inputType-87"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name="repeatedPassword"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Repeat your password ..."
+        readOnly={undefined}
+        required={true}
+        rows={undefined}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+  <button
+    className="MuiButtonBase-root-111 MuiButton-root-89 MuiButton-contained-98 MuiButton-containedPrimary-99 MuiButton-raised-101 MuiButton-raisedPrimary-102 MuiButton-fullWidth-110 SignUpForm-signUpButton-61 some text a"
+    disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-90"
+    >
+      Sign Up
+    </span>
+    <span
+      className="MuiTouchRipple-root-114"
+    />
+  </button>
+</form>
+`;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-
 
 const styles = theme => ({
   messageInputWrapper: {
@@ -11,7 +11,7 @@ const styles = theme => ({
     left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
     padding: theme.spacing.unit * 3,
   },
   messageInput: {
@@ -20,15 +20,22 @@ const styles = theme => ({
 });
 
 class InputMessage extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    onJoinButtonClick: PropTypes.func.isRequired,
+    showJoinButton: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     value: '',
-  }
+  };
 
   handleValueChange = (event) => {
     this.setState({
       value: event.target.value,
     });
-  }
+  };
 
   handleKeyPress = (event) => {
     const { value } = this.state;
@@ -37,26 +44,23 @@ class InputMessage extends Component {
       this.props.onSendMessage(value);
       this.setState({ value: '' });
     }
-  }
+  };
 
   render() {
-    const { classes, onJoinButtonClick, showJoinButton, disabled } = this.props;
+    const {
+      classes, onJoinButtonClick, showJoinButton, disabled,
+    } = this.props;
     return (
       <div className={classes.messageInputWrapper}>
         <Paper className={classes.messageInput} elevation={6}>
           {showJoinButton ? (
-            <Button
-              fullWidth
-              variant="raised"
-              color="primary"
-              disabled={disabled}
-              onClick={onJoinButtonClick}
-            >
+            <Button fullWidth variant="raised" color="primary" disabled={disabled} onClick={onJoinButtonClick}>
               Join
             </Button>
           ) : (
             <Input
-              fullWidth placeholder="Type your message…"
+              fullWidth
+              placeholder="Type your message…"
               disabled={disabled}
               value={this.state.value}
               onChange={this.handleValueChange}

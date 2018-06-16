@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatPage /> renders correctly 1`] = `
+<div
+  className="ChatPage-root-2 some text"
+>
+  ChatHeader
+  Sidebar
+  ChatMessages
+  ErrorMessage
+</div>
+`;
+
+exports[`<ChatPage /> renders when isConnected false 1`] = `
+<div
+  className="ChatPage-root-2 some text"
+>
+  ChatHeader
+  Sidebar
+  ChatMessages
+  ErrorMessage
+</div>
+`;
