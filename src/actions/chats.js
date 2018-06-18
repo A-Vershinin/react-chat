@@ -136,10 +136,12 @@ export function createChat(title) {
         data: { title },
       },
     )
-      .then(({ chat }) => {
+      .then((data) => {
+        const { chat } = data;
+
         dispatch({
           type: types.CREATE_CHAT_SUCCESS,
-          payload: { chat },
+          payload: data,
         });
 
         dispatch(fetchMyChats());

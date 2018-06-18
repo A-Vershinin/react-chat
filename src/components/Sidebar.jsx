@@ -10,7 +10,7 @@ import ExploreIcon from '@material-ui/icons/Explore';
 import RestoreIcon from '@material-ui/icons/Restore';
 import NewChatButton from './NewChatButton.jsx';
 import ChatList from './ChatList.jsx';
-
+// eslint-disable
 const styles = theme => ({
   drawerPaper: {
     position: 'relative',
@@ -41,10 +41,26 @@ class Sidebar extends Component {
     searchValue: '',
   };
 
-  handleSearchChange = (event) => {
-    this.setState({
-      searchValue: event.target.value,
-    });
+  getChats() {
+    const { chats } = this.props;
+    const { activeTab } = this.state;
+
+    return this.filterAndSortChats(activeTab === 0 ? chats.my : chats.all);
+  }
+
+  filterAndSortChats = (chats) => {
+    const { searchValue } = this.state;
+    const sortFunc = (one, two) => ((one.title || '').toLowerCase() <= (two.title || '').toLowerCase() ? -1 : 1);
+
+    // eslint-disable-next-line
+    const _chats = chats.sort(sortFunc);
+
+    if (!searchValue) {
+      return _chats;
+    }
+
+    // eslint-disable-next-line
+    return _chats.filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()));
   };
 
   handleTabChange = (event, value) => {
@@ -53,12 +69,10 @@ class Sidebar extends Component {
     });
   };
 
-  filterChats = (chats) => {
-    const { searchValue } = this.state;
-
-    return chats
-      .filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
-      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+  handleSearchChange = (event) => {
+    this.setState({
+      searchValue: event.target.value,
+    });
   };
 
   render() {
@@ -80,11 +94,7 @@ class Sidebar extends Component {
             />
           </div>
           <Divider />
-          <ChatList
-            disabled={!isConnected}
-            chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
-            activeChat={chats.active}
-          />
+          <ChatList disabled={!isConnected} chats={this.getChats()} activeChat={chats.active} />
           <NewChatButton disabled={!isConnected} onCreateChat={createChat} />
           <BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
             <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />

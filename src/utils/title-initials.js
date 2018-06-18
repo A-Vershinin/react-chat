@@ -1,4 +1,8 @@
 export default function titleInitials(title) {
+  if (typeof title !== 'string') {
+    return '';
+  }
+
   try {
     return title
       .split(' ')
